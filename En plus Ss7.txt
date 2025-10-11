@@ -1,0 +1,12 @@
+
+
+Intégrer system promotion
+			--> Tel jour, tel date on fais apparaitre une PROMO "D'Halloween, de Noel, de Pâques , de mes couilles...ect...
+			--> Pour Tel somme acheter alors xxx OFFERT...
+			
+Intégrer system Famille
+			--> menu définit pour ..,..€
+			
+Intégrer system Paiement en ligne 
+			--> "PayPal, Western, comme tu veux...."
+
