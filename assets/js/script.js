@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartTotal = document.getElementById('cartTotal');
     const checkoutBtn = document.getElementById('checkoutBtn');
     const addToCartBtns = document.querySelectorAll('.add-to-cart');
+    const qrBtn = document.getElementById('qrBtn');
 
     // Gestion du thème sombre/clair
     const currentTheme = localStorage.getItem('theme') || 'light';
@@ -165,6 +166,14 @@ document.addEventListener('DOMContentLoaded', () => {
     muteBtn.addEventListener('click', () => {
         audio.muted = !audio.muted;
         muteBtn.classList.toggle('muted');
+    });
+
+    // Ouvrir l'image du QR code
+    qrBtn.addEventListener('click', () => {
+        modalImage.src = 'assets/images/QR3-Le-Camarguais.png';
+        modalImage.alt = 'QR Code Le Camarguais';
+        modal.classList.remove('hidden');
+        modal.classList.add('show');
     });
 
     window.openModal = function(src, alt) {
