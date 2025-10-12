@@ -1,0 +1,154 @@
+body {
+    font-family: 'Poppins', system-ui, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+    color: #000000;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body[data-theme="dark"] {
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    color: #e2e8f0;
+}
+
+body[data-theme="dark"] .section-card {
+    background: #2d3748;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+body[data-theme="dark"] .section-card:hover {
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+}
+
+body[data-theme="dark"] h2 {
+    color: #e2e8f0;
+}
+
+body[data-theme="dark"] .text-gray-600 {
+    color: #a0aec0;
+}
+
+body[data-theme="dark"] footer {
+    background: #4a5568;
+    color: #e2e8f0;
+}
+
+.header-bg {
+    background: linear-gradient(90deg, #3F2B00 0%, #8B6F00 100%);
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: pulse-text 2s ease-in-out infinite;
+}
+
+@keyframes pulse-text {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.section-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+.header-logo {
+    height: 5rem;
+    width: auto;
+    border-radius: 0.5rem;
+    object-fit: contain;
+}
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.icon-fullscreen::before {
+    content: '⛶';
+    font-size: 1.2rem;
+}
+
+.btn.fullscreen .icon-fullscreen::before {
+    content: '↙️';
+}
+
+.icon-sound::before {
+    content: '🔊';
+    font-size: 1.2rem;
+}
+
+.btn.muted .icon-sound::before {
+    content: '🔇';
+}
+
+.icon-theme::before {
+    content: '🌒';
+    font-size: 1.2rem;
+}
+
+.btn.theme-dark .icon-theme::before {
+    content: '🌞';
+}
+
+.btn-phone {
+    background-color: #ffffff;
+    color: #D4A017 !important;
+}
+
+.btn-whatsapp {
+    background-color: #25D366;
+    color: #ffffff;
+}
+
+.btn-snapchat {
+    background-color: #FFFC00;
+    color: #D4A017 !important;
+}
+
+.text-dark-gold {
+    color: #D4A017 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .header-logo {
+        height: 4rem;
+    }
+
+    .section-card {
+        padding: 1rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

@@ -1,18 +1,30 @@
 
-
-Intégrer system promotion
+*********************************************
+Intégrer system promotion	**Fait Ss7 OK**
 			--> Tel jour, tel date on fais apparaitre une PROMO "D'Halloween, de Noel, de Pâques , de mes couilles...ect...
 			--> Pour Tel somme acheter alors xxx OFFERT...
-			
-Intégrer system Famille
+			*********
+			Si aucune promotion n'est active, tu peux modifier le lien dans index.html pour pointer vers promotionNON.html :
+*********************************************
+
+*********************************************
+Intégrer system Famille	"A voir car promo = presque la même chose"
 			--> menu définit pour ..,..€
-			
+*********************************************
+
+*********************************************
 Intégrer system Paiement en ligne 
 			--> "PayPal, Western, comme tu veux...."
+*********************************************
 
+*********************************************
 intégrer un system de LOGIN "Inscription"
 				"un compte, mail, password" pour s'identifier "
 				pour creer une " Clientelle fidéles", 
 						Si tu es membre alors tu as droit a un truc en plus, Example = du temps de PS5, 1,2 parties de Flipper... " 
 						avec sur le site web un tableau qui lui coche le nombre de commande et...
 						Example = au bout de 10 commandes alors une offerte...
+				Du coup prix des boissons car les définirs dans le prix final des menus "Classic""Promo"ect...IMPORTANT!!!
+*********************************************
+
+*********************************************

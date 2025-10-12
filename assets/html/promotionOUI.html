@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promotions - Le Camarguais</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icon/favicon-16x16.png">
+    <link rel="manifest" href="../manifest/site.webmanifest">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/promotionOUI.css">
+</head>
+<body class="min-h-screen flex flex-col" data-theme="light">
+    <header class="header-bg text-white text-center py-6 px-4">
+        <div class="flex items-center justify-center gap-2 flex-col sm:flex-row">
+            <img src="../images/logo.png" alt="Logo du Restaurant" class="header-logo">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4 animate-pulse-text">Le Camarguais</h1>
+        </div>
+        <div class="flex flex-wrap justify-center gap-2">
+            <button id="themeToggleBtn" class="btn bg-white text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium"><span class="icon-theme"></span></button>
+            <button id="fullscreenBtn" class="btn bg-white text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium"><span class="icon-fullscreen"></span></button>
+            <button id="muteBtn" class="btn bg-white text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium"><span class="icon-sound"></span></button>
+            <a href="tel:+33123456789" class="btn btn-phone bg-white text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Appeler le restaurant"><i class="fas fa-phone"></i></a>
+            <a href="https://wa.me/33123456789" class="btn btn-whatsapp bg-whatsapp-green text-white w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Contacter via WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.snapchat.com/add/restosnap" class="btn btn-snapchat bg-snapchat-yellow text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Suivre sur Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+            <a href="../../index.html" class="btn bg-white text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Retour au menu"><i class="fas fa-home"></i></a>
+        </div>
+    </header>
+
+    <audio id="bgAudio" autoplay loop>
+        <source src="../audio/background.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'audio.
+    </audio>
+
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <section class="section-card p-4 sm:p-6 mb-8">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Nos Promotions Actuelles</h2>
+            <p id="promoDate" class="text-base sm:text-lg font-medium text-gray-600 mb-4">Valable jusqu'au 31/10/2025</p>
+            <ul class="space-y-4">
+                <li>
+                    <strong>Menu Duo</strong> : 10€ (au lieu de 12€)<br>Deux sandwiches "Jambon emmental beurre" + une boisson au choix.<br>
+                    <img src="../images/Jambon-Beurre.jpg" alt="Sandwich Jambon Emmental Beurre" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
+                </li>
+                <li>
+                    <strong>Panini Fiesta</strong> : 4€ (au lieu de 5€)<br>Panini chorizo tomate mozzarella à prix réduit.<br>
+                    <img src="../images/Panini.jpg" alt="Panini Chorizo Tomate Mozzarella" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
+                </li>
+                <li>
+                    <strong>Dessert Gourmand</strong> : 2€ (au lieu de 3€)<br>Tarte Daim ou Oreo à prix spécial.<br>
+                    <img src="../images/Tarte-Daim.webp" alt="Tarte Daim" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-50">
+        <div class="relative bg-white rounded-lg p-2 sm:p-4 max-w-full sm:max-w-3xl w-full mx-2 sm:mx-4">
+            <button id="closeModal" class="absolute top-3 right-3 text-black text-2xl font-bold hover:text-gray-600 transition">&times;</button>
+            <img id="modalImage" src="" alt="" class="w-full h-auto max-h-[80vh] object-contain">
+        </div>
+    </div>
+
+    <footer class="bg-gray-200 text-center py-4 text-sm text-black">
+        <p>© 2025 Le Camarguais - Images/Photos non contractuelles - Tous droits réservés</p>
+    </footer>
+
+    <script src="../js/promotionOUI.js"></script>
+</body>
+</html>
