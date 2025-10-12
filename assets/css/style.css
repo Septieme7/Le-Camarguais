@@ -2,6 +2,64 @@ body {
     font-family: 'Poppins', system-ui, sans-serif;
     background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
     color: #000000;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body[data-theme="dark"] {
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    color: #e2e8f0;
+}
+
+body[data-theme="dark"] .section-card {
+    background: #2d3748;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+body[data-theme="dark"] .section-card:hover {
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+}
+
+body[data-theme="dark"] h2 {
+    color: #e2e8f0;
+}
+
+body[data-theme="dark"] .quantity-btn {
+    background: #4a5568;
+    color: #e2e8f0;
+}
+
+body[data-theme="dark"] .quantity-btn:hover {
+    background: #718096;
+}
+
+body[data-theme="dark"] #cartModal .bg-white {
+    background: #2d3748;
+}
+
+body[data-theme="dark"] #cartModal .text-black {
+    color: #e2e8f0;
+}
+
+body[data-theme="dark"] #cartModal .text-gray-600 {
+    color: #a0aec0;
+}
+
+body[data-theme="dark"] #imageModal .bg-white {
+    background: #2d3748;
+}
+
+body[data-theme="dark"] .bg-gray-100 {
+    background: #4a5568;
+}
+
+body[data-theme="dark"] .cart-item {
+    background: #4a5568;
+    border-color: #718096;
+}
+
+body[data-theme="dark"] footer {
+    background: #4a5568;
+    color: #e2e8f0;
 }
 
 .header-bg {
@@ -34,8 +92,8 @@ h1 {
 }
 
 img.menu-img {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     border-radius: 1rem !important;
     overflow: hidden;
@@ -55,7 +113,7 @@ img.menu-img:hover {
 }
 
 .header-logo {
-    height: 7rem; /* Hauteur fixe à 7rem (112px) */
+    height: 5rem;
     width: auto;
     border-radius: 0.5rem;
     object-fit: contain;
@@ -121,6 +179,15 @@ img.menu-img:hover {
     content: '🔇';
 }
 
+.icon-theme::before {
+    content: '🌘';
+    font-size: 1.2rem;
+}
+
+.btn.theme-dark .icon-theme::before {
+    content: '🌞';
+}
+
 .btn-phone {
     background-color: #ffffff;
     color: #D4A017 !important;
@@ -138,7 +205,7 @@ img.menu-img:hover {
 
 .open-cart-btn {
     background: transparent;
-    border: none; /* Suppression de la bordure */
+    border: none;
     color: #FFD700;
     padding: 8px 16px;
     border-radius: 0.5rem;
@@ -152,4 +219,60 @@ img.menu-img:hover {
 
 .text-dark-gold {
     color: #D4A017 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .header-logo {
+        height: 4rem;
+    }
+
+    img.menu-img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .section-card {
+        padding: 1rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    li strong {
+        font-size: 0.9rem;
+    }
+
+    li br + span, li br + div {
+        font-size: 0.8rem;
+    }
+
+    #modalImage {
+        max-width: 100%;
+    }
+
+    .open-cart-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    #cartModal .max-w-2xl {
+        max-width: 90%;
+    }
+
+    #imageModal .max-w-3xl {
+        max-width: 90%;
+    }
 }

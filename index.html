@@ -13,18 +13,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="min-h-screen flex flex-col">
-    <header class="header-bg text-white text-center py-8 px-4">
-        <div class="flex items-center justify-center gap-4">
+<body class="min-h-screen flex flex-col" data-theme="light">
+    <header class="header-bg text-white text-center py-6 px-4">
+        <div class="flex items-center justify-center gap-2 flex-col sm:flex-row">
             <img src="assets/images/logo.png" alt="Logo du Restaurant" class="header-logo">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-pulse-text">Le Camarguais</h1>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4 animate-pulse-text">Le Camarguais</h1>
         </div>
-        <div class="flex flex-wrap justify-center gap-4">
-            <button id="fullscreenBtn" class="btn bg-white text-dark-gold px-4 py-2 rounded-lg font-medium"><span class="icon-fullscreen"></span></button>
-            <button id="muteBtn" class="btn bg-white text-dark-gold px-4 py-2 rounded-lg font-medium"><span class="icon-sound"></span></button>
-            <a href="tel:+33123456789" class="btn btn-phone bg-white text-dark-gold px-4 py-2 rounded-lg font-medium" aria-label="Appeler le restaurant"><i class="fas fa-phone"></i></a>
-            <a href="https://wa.me/33123456789" class="btn btn-whatsapp bg-whatsapp-green text-white px-4 py-2 rounded-lg font-medium" aria-label="Contacter via WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.snapchat.com/add/restosnap" class="btn btn-snapchat bg-snapchat-yellow text-dark-gold px-4 py-2 rounded-lg font-medium" aria-label="Suivre sur Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+        <div class="flex flex-wrap justify-center gap-2">
+            <button id="themeToggleBtn" class="btn bg-white text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium"><span class="icon-theme"></span></button>
+            <button id="fullscreenBtn" class="btn bg-white text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium"><span class="icon-fullscreen"></span></button>
+            <button id="muteBtn" class="btn bg-white text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium"><span class="icon-sound"></span></button>
+            <a href="tel:+33123456789" class="btn btn-phone bg-white text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Appeler le restaurant"><i class="fas fa-phone"></i></a>
+            <a href="https://wa.me/33123456789" class="btn btn-whatsapp bg-whatsapp-green text-white w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Contacter via WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.snapchat.com/add/restosnap" class="btn btn-snapchat bg-snapchat-yellow text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Suivre sur Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
         </div>
     </header>
 
@@ -33,246 +34,246 @@
         Votre navigateur ne supporte pas l'audio.
     </audio>
 
-    <main class="flex-grow container mx-auto px-4 py-8">
-        <section id="sandwiches" class="section-card p-6 mb-8">
-            <h2 class="text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Sandwiches "Demie-baguette"</h2>
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <section id="sandwiches" class="section-card p-4 sm:p-6 mb-8">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Sandwiches "Demie-baguette"</h2>
             <img src="assets/images/Jambon-Beurre.jpg" alt="Sandwich Jambon Emmental Beurre" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
             <ul class="space-y-4">
                 <li>
                     <strong>Jambon emmental beurre</strong> : 4.50€<br>Un classique français avec jambon de qualité, emmental fondant et beurre frais sur une demie-baguette croustillante.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('jambon-emmental-beurre')">-</button>
                         <span id="jambon-emmental-beurre-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('jambon-emmental-beurre')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Jambon emmental beurre" data-price="4.50">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Jambon emmental beurre" data-price="4.50">Ajouter</button>
                     </div>
                 </li>
                 <li>
                     <strong>Saucisson beurre</strong> : 4.50€<br>Saucisson sec tranché finement avec du beurre doux pour une saveur rustique.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('saucisson-beurre')">-</button>
                         <span id="saucisson-beurre-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('saucisson-beurre')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Saucisson beurre" data-price="4.50">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Saucisson beurre" data-price="4.50">Ajouter</button>
                     </div>
                 </li>
                 <li>
                     <strong>Halal jambon emmental</strong> : 4.50€<br>Jambon halal tendre et emmental, option halal pleine de goût.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('halal-jambon-emmental')">-</button>
                         <span id="halal-jambon-emmental-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('halal-jambon-emmental')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Halal jambon emmental" data-price="4.50">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Halal jambon emmental" data-price="4.50">Ajouter</button>
                     </div>
                 </li>
             </ul>
         </section>
 
-        <section id="burrata" class="section-card p-6 mb-8">
-            <h2 class="text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Burrata</h2>
+        <section id="burrata" class="section-card p-4 sm:p-6 mb-8">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Burrata</h2>
             <img src="assets/images/Burrata.jpg" alt="Burrata Mortadella Emmental" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
             <ul class="space-y-4">
                 <li>
                     <strong>Burrata mortadella emmental</strong> : 5€<br>Explosion de saveurs italiennes avec burrata crémeuse, mortadella et emmental.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('burrata-mortadella-emmental')">-</button>
                         <span id="burrata-mortadella-emmental-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('burrata-mortadella-emmental')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Burrata mortadella emmental" data-price="5">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Burrata mortadella emmental" data-price="5">Ajouter</button>
                     </div>
                 </li>
             </ul>
         </section>
 
-        <section id="croque" class="section-card p-6 mb-8">
-            <h2 class="text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Croque Monsieur</h2>
+        <section id="croque" class="section-card p-4 sm:p-6 mb-8">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Croque Monsieur</h2>
             <img src="assets/images/Croque-Monsieur.webp" alt="Croque Monsieur Nature" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
             <ul class="space-y-4">
                 <li>
                     <strong>Croque Monsieur nature</strong> : 4.50€<br>Grillé à la perfection avec jambon, fromage et béchamel.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('croque-monsieur-nature')">-</button>
                         <span id="croque-monsieur-nature-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('croque-monsieur-nature')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Croque Monsieur nature" data-price="4.50">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Croque Monsieur nature" data-price="4.50">Ajouter</button>
                     </div>
                 </li>
             </ul>
         </section>
 
-        <section id="paninis" class="section-card p-6 mb-8">
-            <h2 class="text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Panini (5€)</h2>
+        <section id="paninis" class="section-card p-4 sm:p-6 mb-8">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Panini (5€)</h2>
             <img src="assets/images/Panini.jpg" alt="Panini Saumon Boursin" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
             <ul class="space-y-4">
                 <li>
                     <strong>Saumon boursin</strong><br>Saumon fumé et boursin crémeux, grillé à souhait.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('saumon-boursin')">-</button>
                         <span id="saumon-boursin-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('saumon-boursin')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Saumon boursin" data-price="5">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Saumon boursin" data-price="5">Ajouter</button>
                     </div>
                 </li>
                 <li>
                     <strong>Poulet boursin</strong><br>Poulet rôti juteux avec boursin onctueux.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('poulet-boursin')">-</button>
                         <span id="poulet-boursin-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('poulet-boursin')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Poulet boursin" data-price="5">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Poulet boursin" data-price="5">Ajouter</button>
                     </div>
                 </li>
                 <li>
                     <strong>Jambon cru chèvre</strong><br>Jambon cru salé et chèvre frais, saveur méditerranéenne.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('jambon-cru-chevre')">-</button>
                         <span id="jambon-cru-chevre-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('jambon-cru-chevre')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Jambon cru chèvre" data-price="5">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Jambon cru chèvre" data-price="5">Ajouter</button>
                     </div>
                 </li>
                 <li>
                     <strong>3 fromages</strong><br>Trio de fromages fondus pour les amateurs.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('3-fromages')">-</button>
                         <span id="3-fromages-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('3-fromages')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="3 fromages" data-price="5">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="3 fromages" data-price="5">Ajouter</button>
                     </div>
                 </li>
                 <li>
                     <strong>Jambon emmental</strong><br>Jambon et emmental coulant, réconfortant.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('jambon-emmental')">-</button>
                         <span id="jambon-emmental-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('jambon-emmental')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Jambon emmental" data-price="5">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Jambon emmental" data-price="5">Ajouter</button>
                     </div>
                 </li>
                 <li>
                     <strong>Chorizo tomate mozzarella</strong><br>Chorizo épicé, tomates et mozzarella filante.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('chorizo-tomate-mozzarella')">-</button>
                         <span id="chorizo-tomate-mozzarella-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('chorizo-tomate-mozzarella')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Chorizo tomate mozzarella" data-price="5">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Chorizo tomate mozzarella" data-price="5">Ajouter</button>
                     </div>
                 </li>
                 <li>
                     <strong>Reblochon</strong><br>Reblochon fondant, style montagnard.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('reblochon')">-</button>
                         <span id="reblochon-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('reblochon')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Reblochon" data-price="5">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Reblochon" data-price="5">Ajouter</button>
                     </div>
                 </li>
                 <li>
                     <strong>Reblochon lardons</strong><br>Reblochon avec lardons croustillants.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('reblochon-lardons')">-</button>
                         <span id="reblochon-lardons-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('reblochon-lardons')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Reblochon lardons" data-price="5">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Reblochon lardons" data-price="5">Ajouter</button>
                     </div>
                 </li>
             </ul>
         </section>
 
-        <section id="bruschetta" class="section-card p-6 mb-8">
-            <h2 class="text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Bruschetta</h2>
+        <section id="bruschetta" class="section-card p-4 sm:p-6 mb-8">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Bruschetta</h2>
             <img src="assets/images/Bruschetta1.jpg" alt="Bruschetta Base Crème ou Tomate" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
             <ul class="space-y-4">
                 <li>
                     <strong>Base crème ou tomate</strong> : 6€ / 9€<br>Pain grillé garni de crème onctueuse ou tomate fraîche.<br>
                     <div class="flex flex-col space-y-2 mt-1">
-                        <div class="flex items-center">
+                        <div class="flex items-center flex-wrap">
                             <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('base-creme')">-</button>
                             <span id="base-creme-quantity" class="px-3 py-1 bg-gray-100">1</span>
                             <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('base-creme')">+</button>
-                            <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Base crème" data-price="6">Ajouter (crème)</button>
+                            <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Base crème" data-price="6">Ajouter (crème)</button>
                         </div>
-                        <div class="flex items-center">
+                        <div class="flex items-center flex-wrap">
                             <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('base-tomate')">-</button>
                             <span id="base-tomate-quantity" class="px-3 py-1 bg-gray-100">1</span>
                             <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('base-tomate')">+</button>
-                            <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Base tomate" data-price="9">Ajouter (tomate)</button>
+                            <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Base tomate" data-price="9">Ajouter (tomate)</button>
                         </div>
                     </div>
                 </li>
             </ul>
         </section>
 
-        <section id="burgers" class="section-card p-6 mb-8">
-            <h2 class="text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Burgers</h2>
+        <section id="burgers" class="section-card p-4 sm:p-6 mb-8">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Burgers</h2>
             <img src="assets/images/Hamburger1.jpg" alt="Burger Simple" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
             <ul class="space-y-4">
                 <li>
                     <strong>Burger simple</strong> : 6€<br>Viande juteuse, fromage fondant et légumes frais.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('burger-simple')">-</button>
                         <span id="burger-simple-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('burger-simple')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Burger simple" data-price="6">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Burger simple" data-price="6">Ajouter</button>
                     </div>
                 </li>
                 <li>
                     <strong>Burger double</strong> : 8€<br>Double steak pour plus de gourmandise.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('burger-double')">-</button>
                         <span id="burger-double-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('burger-double')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Burger double" data-price="8">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Burger double" data-price="8">Ajouter</button>
                     </div>
                 </li>
             </ul>
         </section>
 
-        <section id="autres" class="section-card p-6 mb-8">
-            <h2 class="text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Autres</h2>
+        <section id="autres" class="section-card p-4 sm:p-6 mb-8">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Autres</h2>
             <img src="assets/images/HotDog1.jpg" alt="Hot Dog" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
             <ul class="space-y-4">
                 <li>
                     <strong>Portion pizza</strong> : 2€<br>Part croustillante avec sauce tomate et toppings.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('portion-pizza')">-</button>
                         <span id="portion-pizza-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('portion-pizza')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Portion pizza" data-price="2">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Portion pizza" data-price="2">Ajouter</button>
                     </div>
                 </li>
                 <li>
                     <strong>Hot dog viande hachée</strong> : 7€<br>Viande hachée épicée avec oignons et sauces.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('hot-dog-viande-hachee')">-</button>
                         <span id="hot-dog-viande-hachee-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('hot-dog-viande-hachee')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Hot dog viande hachée" data-price="7">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Hot dog viande hachée" data-price="7">Ajouter</button>
                     </div>
                 </li>
                 <li>
                     <strong>Hot dog saucisse</strong> : 7€<br>Saucisse grillée avec condiments.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('hot-dog-saucisse')">-</button>
                         <span id="hot-dog-saucisse-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('hot-dog-saucisse')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Hot dog saucisse" data-price="7">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Hot dog saucisse" data-price="7">Ajouter</button>
                     </div>
                 </li>
             </ul>
         </section>
 
-        <section id="desserts" class="section-card p-6 mb-8">
-            <h2 class="text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Desserts</h2>
+        <section id="desserts" class="section-card p-4 sm:p-6 mb-8">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Desserts</h2>
             <img src="assets/images/Tiramisu-Speculoos.jpg" alt="Tiramisu Speculoos" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
             <ul class="space-y-4">
                 <li>
                     <strong>Tiramisu speculoos</strong> : 4€<br>Revisité avec biscuits speculoos et mascarpone.<br>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mt-1 flex-wrap">
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('tiramisu-speculoos')">-</button>
                         <span id="tiramisu-speculoos-quantity" class="px-3 py-1 bg-gray-100">1</span>
                         <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('tiramisu-speculoos')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Tiramisu speculoos" data-price="4">Ajouter</button>
+                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Tiramisu speculoos" data-price="4">Ajouter</button>
                     </div>
                 </li>
             </ul>
@@ -282,17 +283,17 @@
                 <li>
                     <strong>Tartes (Daim, Oreo)</strong> : 3€<br>Tartes maison au caramel croquant ou biscuit fondant.<br>
                     <div class="flex flex-col space-y-2 mt-1">
-                        <div class="flex items-center">
+                        <div class="flex items-center flex-wrap">
                             <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('tarte-daim')">-</button>
                             <span id="tarte-daim-quantity" class="px-3 py-1 bg-gray-100">1</span>
                             <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('tarte-daim')">+</button>
-                            <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Tarte Daim" data-price="3">Ajouter (Daim)</button>
+                            <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Tarte Daim" data-price="3">Ajouter (Daim)</button>
                         </div>
-                        <div class="flex items-center">
+                        <div class="flex items-center flex-wrap">
                             <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('tarte-oreo')">-</button>
                             <span id="tarte-oreo-quantity" class="px-3 py-1 bg-gray-100">1</span>
                             <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('tarte-oreo')">+</button>
-                            <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2" data-name="Tarte Oreo" data-price="3">Ajouter (Oreo)</button>
+                            <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Tarte Oreo" data-price="3">Ajouter (Oreo)</button>
                         </div>
                     </div>
                 </li>
@@ -302,17 +303,17 @@
 
     <!-- Commande -->
     <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-50">
-        <div class="relative bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto shadow-xl">
+        <div class="relative bg-white rounded-lg p-4 sm:p-6 max-w-full sm:max-w-2xl w-full mx-2 sm:mx-4 max-h-[80vh] overflow-y-auto shadow-xl">
             <button id="closeCart" class="absolute top-3 right-3 text-black text-2xl font-bold hover:text-gray-600 transition">&times;</button>
-            <h3 class="text-xl font-bold mb-4 text-center text-gray-600">Votre Commande</h3>
+            <h3 class="text-lg sm:text-xl font-bold mb-4 text-center text-gray-600">Votre Commande</h3>
             <ul id="cartItems" class="space-y-4 mb-6"></ul>
-            <p id="cartTotal" class="text-lg font-semibold mb-4 text-center">Total: 0€</p>
+            <p id="cartTotal" class="text-base sm:text-lg font-semibold mb-4 text-center">Total: 0€</p>
             <button id="checkoutBtn" class="bg-blue-500 text-white px-4 py-2 rounded w-full hover:bg-blue-600 transition">Passer la commande</button>
         </div>
     </div>
 
     <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-50">
-        <div class="relative bg-white rounded-lg p-4 max-w-3xl w-full mx-4">
+        <div class="relative bg-white rounded-lg p-2 sm:p-4 max-w-full sm:max-w-3xl w-full mx-2 sm:mx-4">
             <button id="closeModal" class="absolute top-3 right-3 text-black text-2xl font-bold hover:text-gray-600 transition">&times;</button>
             <img id="modalImage" src="" alt="" class="w-full h-auto max-h-[80vh] object-contain">
         </div>

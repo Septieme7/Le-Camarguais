@@ -10,3 +10,9 @@ Intégrer system Famille
 Intégrer system Paiement en ligne 
 			--> "PayPal, Western, comme tu veux...."
 
+intégrer un system de LOGIN "Inscription"
+				"un compte, mail, password" pour s'identifier "
+				pour creer une " Clientelle fidéles", 
+						Si tu es membre alors tu as droit a un truc en plus, Example = du temps de PS5, 1,2 parties de Flipper... " 
+						avec sur le site web un tableau qui lui coche le nombre de commande et...
+						Example = au bout de 10 commandes alors une offerte...

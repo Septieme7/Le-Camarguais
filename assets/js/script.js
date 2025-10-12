@@ -2,6 +2,7 @@ let cart = [];
 const quantities = {};
 
 document.addEventListener('DOMContentLoaded', () => {
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
     const fullscreenBtn = document.getElementById('fullscreenBtn');
     const muteBtn = document.getElementById('muteBtn');
     const audio = document.getElementById('bgAudio');
@@ -14,6 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartTotal = document.getElementById('cartTotal');
     const checkoutBtn = document.getElementById('checkoutBtn');
     const addToCartBtns = document.querySelectorAll('.add-to-cart');
+
+    // Gestion du thème sombre/clair
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.body.setAttribute('data-theme', currentTheme);
+    if (currentTheme === 'dark') {
+        themeToggleBtn.classList.add('theme-dark');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        const newTheme = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        document.body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeToggleBtn.classList.toggle('theme-dark');
+    });
 
     // Initialiser les quantités à 1
     document.querySelectorAll('.quantity-btn').forEach(btn => {
@@ -66,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const itemTotal = item.price * item.quantity;
             total += itemTotal;
             const li = document.createElement('li');
-            li.className = 'cart-item flex items-center justify-between';
+            li.className = 'cart-item flex items-center justify-between flex-wrap gap-2';
             li.innerHTML = `
                 <span class="flex-1">${item.name} x${item.quantity} - ${itemTotal.toFixed(2)}€</span>
                 <div class="flex space-x-2">
