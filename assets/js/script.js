@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeCartBtn = document.getElementById('closeCart');
     const cartItemsList = document.getElementById('cartItems');
     const cartTotal = document.getElementById('cartTotal');
-    const checkoutBtn = document.getElementById('checkoutBtn');
     const addToCartBtns = document.querySelectorAll('.add-to-cart');
     const qrBtn = document.getElementById('qrBtn');
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
 
     // Gestion du thème sombre/clair
     const currentTheme = localStorage.getItem('theme') || 'light';
@@ -119,19 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCart();
     };
 
-    // Passer la commande
-    checkoutBtn.addEventListener('click', () => {
-        if (cart.length === 0) {
-            alert('Votre commande est vide !');
-        } else {
-            alert(`Commande passée ! Total: ${cartTotal.textContent}`);
-            cart = [];
-            updateCart();
-            cartModal.classList.add('hidden');
-            cartModal.classList.remove('show');
-        }
-    });
-
     // Bouton pour ouvrir la commande
     const openCartBtn = document.createElement('button');
     openCartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i> Voir Commande';
@@ -174,6 +161,19 @@ document.addEventListener('DOMContentLoaded', () => {
         modalImage.alt = 'QR Code Le Camarguais';
         modal.classList.remove('hidden');
         modal.classList.add('show');
+    });
+
+    // Scroll to top functionality
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
     });
 
     window.openModal = function(src, alt) {

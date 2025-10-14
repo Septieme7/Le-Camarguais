@@ -28,7 +28,22 @@ intégrer un system de LOGIN "Inscription"
 *********************************************
 
 *********************************************
-Intégrer	HORLOGE digital kkl part...		C fait mais pas top  OK Ss7
+Intégrer	HORLOGE digital kkl part...		C fait mais pas top "retirer" OK Ss7
 *********************************************
 
 *********************************************
+Intégrer une fleche UP en bas de la page....
+
+*********************************************
+
+*********************************************
+Corriger le problem de "paddind" entre ajouter "de tiramisu speculos" et l'image "tarete daims"
+*********************************************
+
+*********************************************
+prevoir de pouvoir faire descendre la liste de la commande 
+avec une barre scroll..
+*********************************************
+
+*********************************************
+plus rajouter le noms des titres des articles dans le MODAL---> affichage du titre de l'article et aprés son nom "du sandicthes 

@@ -12,9 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- <link rel="stylesheet" href="assets/css/clock.css"> -->
     <link rel="stylesheet" href="assets/css/bgcanvas.css">
-
 </head>
 
 <canvas id="bgcanvas"></canvas>
@@ -309,14 +307,6 @@
         </section>
     </main>
 
-    <!-- Horloge Cyberpunk -->
-    <!-- <div id="cyberpunkClock" class="cyberpunk-clock">
-        <div class="clock-container">
-            <div class="clock-time" id="clockTime">00:00:00</div>
-            <div class="clock-date" id="clockDate">Dimanche 12 Octobre 2025</div>
-        </div>
-    </div> -->
-
     <!-- Commande -->
     <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-50">
         <div class="relative bg-white rounded-lg p-4 sm:p-6 max-w-full sm:max-w-2xl w-full mx-2 sm:mx-4 max-h-[80vh] overflow-y-auto shadow-xl">
@@ -324,7 +314,11 @@
             <h3 class="text-lg sm:text-xl font-bold mb-4 text-center text-gray-600">Votre Commande</h3>
             <ul id="cartItems" class="space-y-4 mb-6"></ul>
             <p id="cartTotal" class="text-base sm:text-lg font-semibold mb-4 text-center">Total: 0€</p>
-            <button id="checkoutBtn" class="bg-blue-500 text-white px-4 py-2 rounded w-full hover:bg-blue-600 transition">Passer la commande</button>
+            <div class="flex flex-wrap justify-center gap-2">
+                <a href="tel:+33426484756" class="btn btn-phone bg text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Appeler le restaurant"><i class="fas fa-phone"></i></a>
+                <a href="https://wa.me/33426484756" class="btn btn-whatsapp bg-whatsapp-green text-white w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Contacter via WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.snapchat.com/add/restosnap" class="btn btn-snapchat bg-snapchat-yellow text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Suivre sur Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+            </div>
         </div>
     </div>
 
@@ -335,13 +329,16 @@
         </div>
     </div>
 
+    <!-- Flèche pour remonter -->
+    <button id="scrollTopBtn" class="fixed bottom-4 right-4 bg-gray-800 text-dark-gold w-12 h-12 flex items-center justify-center rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 opacity-0 invisible z-40">
+        <i class="fas fa-arrow-up text-lg"></i>
+    </button>
+
     <footer class="bg-gray-200 text-center py-4 text-sm text-black">
         <p>© 2025 Le Camarguais - Images/Photos non contractuelles Attention "Site Web a titre d'info pour les prix AUCUNE commandes ne sera prises en comptes - Tous droits réservés</p>
     </footer>
 
     <script src="assets/js/script.js"></script>
-    <!-- <script src="assets/js/clock.js"></script> -->
     <script src="assets/js/bgcanvas.js"></script>
-
 </body>
 </html>
