@@ -32,34 +32,42 @@
     
     <!-- Schema.org for Restaurant -->
     <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Salon de thé",
-            "name": "Le Camarguais",
-            "description": "Salon de thé traditionnel en Camargue proposant plats régionaux, sandwiches et burgers maison",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Port-Saint-Louis-du-Rhône",
-                "postalCode": "13230",
-                "addressRegion": "Bouches-du-Rhône",
-                "addressCountry": "FR"
-            },
-            "telephone": "+33426484756",
-            "servesCuisine": ["Française", "Camarguaise", "Méditerranéenne"],
-            "priceRange": "€",
-            "openingHours": "Mo-Su",
-            "url": "https://le-camarguais.netlify.app/",
-            "menu": "https://le-camarguais.netlify.app/",
-            "sameAs": [
-                "https://www.snapchat.com/add/camarguais13230"
-            ]
-        }
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Le Camarguais",
+        "description": "Restaurant traditionnel en Camargue proposant plats régionaux, sandwiches et burgers maison",
+        "image": "../images/logo.png",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "21 Av. du Port",
+            "addressLocality": "Port-Saint-Louis-du-Rhône",
+            "postalCode": "13230",
+            "addressRegion": "Bouches-du-Rhône",
+            "addressCountry": "FR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "43.388773545665074",
+            "longitude": "4.802509739789392"
+        },
+        "telephone": "+33426484756",
+        "servesCuisine": ["Française", "Camarguaise", "Méditerranéenne"],
+        "priceRange": "€",
+        "openingHours": [
+            "Mo-Su 08:00-15:00",
+            "Mo-Su 17:30-21:30"
+        ],
+        "url": "https://le-camarguais.netlify.app/",
+        "sameAs": [
+            "https://www.snapchat.com/add/camarguais13230"
+        ]
+    }
     </script>
-
 </head>
 
 <body class="min-h-screen flex flex-col" data-theme="light">
-    <header class="header-bg text-white text-center py-6 px-4" role="banner">
+    <header class="header-bg text-white text-center py-6 px-4">
         <div class="header-overlay"></div>
         <div class="flex items-center justify-center gap-2 flex-col sm:flex-row relative z-10">
             <img src="../images/logo.png" alt="Logo Le Camarguais - Restaurant traditionnel en Camargue" class="header-logo" width="96" height="96" loading="eager">
@@ -90,8 +98,8 @@
         </section>
     </main>
 
-    <footer class="footer" role="contentinfo">
-        <p>© 2025 Le Camarguais - Salon de thé à Port-Saint-Louis-du-Rhône | Images non contractuelles</p>
+    <footer class="footer">
+        <p>© 2025 Le Camarguais - Restaurant à Port-Saint-Louis-du-Rhône | Images non contractuelles</p>
         <p class="text-sm mt-2">Aucune promotion actuellement - Revenez nous visiter régulièrement</p>
     </footer>
 

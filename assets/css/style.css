@@ -670,7 +670,7 @@ a:focus-visible {
 }
 
 /* Amélioration du contraste pour l'accessibilité */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
     :root {
         --bg-primary: #ffffff;
         --text-primary: #000000;
