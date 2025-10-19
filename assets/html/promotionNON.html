@@ -3,45 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promotions - Le Camarguais</title>
+    <title>Aucune Promotion - Le Camarguais | Restaurant Port-Saint-Louis-du-Rhône</title>
+    <meta name="description" content="Aucune promotion en cours au restaurant Le Camarguais. Revenez bientôt pour découvrir nos offres spéciales et menus promotionnels à Port-Saint-Louis-du-Rhône.">
+    <meta name="keywords" content="promotions restaurant Camargue, offres spéciales, menus promotionnels, Port-Saint-Louis-du-Rhône, Le Camarguais">
+    <meta name="robots" content="noindex, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Aucune Promotion - Le Camarguais">
+    <meta property="og:description" content="Revenez bientôt pour découvrir nos prochaines offres promotionnelles au restaurant Le Camarguais">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    
+    <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="../icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../icon/favicon-16x16.png">
     <link rel="manifest" href="../manifest/site.webmanifest">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../images/logo.png" as="image">
+    <link rel="preload" href="../images/headerBG.jpg" as="image">
+    
+    <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/promotionNON.css">
+    
+    <!-- Schema.org for Restaurant -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Salon de thé",
+            "name": "Le Camarguais",
+            "description": "Salon de thé traditionnel en Camargue proposant plats régionaux, sandwiches et burgers maison",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Port-Saint-Louis-du-Rhône",
+                "postalCode": "13230",
+                "addressRegion": "Bouches-du-Rhône",
+                "addressCountry": "FR"
+            },
+            "telephone": "+33426484756",
+            "servesCuisine": ["Française", "Camarguaise", "Méditerranéenne"],
+            "priceRange": "€",
+            "openingHours": "Mo-Su",
+            "url": "https://le-camarguais.netlify.app/",
+            "menu": "https://le-camarguais.netlify.app/",
+            "sameAs": [
+                "https://www.snapchat.com/add/camarguais13230"
+            ]
+        }
+    </script>
+
 </head>
+
 <body class="min-h-screen flex flex-col" data-theme="light">
-    <header class="header-bg text-white text-center py-6 px-4">
+    <header class="header-bg text-white text-center py-6 px-4" role="banner">
         <div class="header-overlay"></div>
         <div class="flex items-center justify-center gap-2 flex-col sm:flex-row relative z-10">
-            <img src="../images/logo.png" alt="Logo du Restaurant" class="header-logo">
+            <img src="../images/logo.png" alt="Logo Le Camarguais - Restaurant traditionnel en Camargue" class="header-logo" width="96" height="96" loading="eager">
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4 animate-pulse-text">Le Camarguais</h1>
         </div>
-        <div class="flex flex-wrap justify-center gap-2 relative z-10">
+        <nav class="flex flex-wrap justify-center gap-2 relative z-10" aria-label="Navigation secondaire">
             <button id="themeToggleBtn" class="btn-header" aria-label="Changer le thème"><span class="icon-theme"></span></button>
             <button id="fullscreenBtn" class="btn-header" aria-label="Mode plein écran"><span class="icon-fullscreen"></span></button>
             <a href="tel:+33426484756" class="btn-header btn-phone" aria-label="Appeler le restaurant"><i class="fas fa-phone"></i></a>
             <a href="https://wa.me/33426484756" class="btn-header btn-whatsapp" aria-label="Contacter via WhatsApp"><i class="fab fa-whatsapp"></i></a>
             <a href="https://www.snapchat.com/add/camarguais13230" class="btn-header btn-snapchat" aria-label="Suivre sur Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
             <a href="../../index.html" class="btn-header" aria-label="Retour à l'accueil"><i class="fas fa-home"></i></a>
-        </div>
+        </nav>
     </header>
 
-    <main class="flex-grow container mx-auto px-4 py-6">
-        <section class="section-card p-4 sm:p-6 mb-8 text-center">
-            <h2 class="section-title">Aucune Promotion en Cours</h2>
-            <p id="promoDate" class="promo-date">Vérifié le 12/10/2025</p>
-            <p class="promo-text">Revenez bientôt pour découvrir nos prochaines offres !</p>
+    <main class="flex-grow container mx-auto px-4 py-6" id="main-content">
+        <section class="section-card p-4 sm:p-6 mb-8 text-center" itemscope itemtype="https://schema.org/WebPageElement">
+            <h2 class="section-title" itemprop="name">Aucune Promotion en Cours</h2>
+            <p id="promoDate" class="promo-date" itemprop="dateModified">Vérifié le <time id="currentDate"></time></p>
+            <div class="promo-content" itemprop="mainEntity">
+                <p class="promo-text">Revenez bientôt pour découvrir nos prochaines offres promotionnelles !</p>
+                <div class="mt-6">
+                    <a href="../../index.html#menu" class="inline-btn" aria-label="Voir notre menu principal">
+                        <i class="fas fa-utensils mr-2"></i>Voir notre menu
+                    </a>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <p>© 2025 Le Camarguais - Images/Photos non contractuelles - Tous droits réservés</p>
+    <footer class="footer" role="contentinfo">
+        <p>© 2025 Le Camarguais - Salon de thé à Port-Saint-Louis-du-Rhône | Images non contractuelles</p>
+        <p class="text-sm mt-2">Aucune promotion actuellement - Revenez nous visiter régulièrement</p>
     </footer>
 
-    <script src="../js/promotionNON.js"></script>
+    <script src="../js/promotionNON.js" defer></script>
 </body>
 </html>

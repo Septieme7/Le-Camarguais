@@ -70,6 +70,7 @@ class RestaurantApp {
         this.loadCartFromLocalStorage();
         this.clearOldCart();
         this.handleResize();
+        this.setupServiceWorker();
     }
 
     setupEventListeners() {
@@ -116,6 +117,27 @@ class RestaurantApp {
         // Gestion des erreurs images
         document.querySelectorAll('img').forEach(img => {
             img.addEventListener('error', () => this.handleImageError(img));
+            img.addEventListener('load', () => this.handleImageLoad(img));
+        });
+
+        // Amélioration du SEO: tracking des interactions
+        this.setupInteractionTracking();
+    }
+
+    setupInteractionTracking() {
+        // Track menu section views
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    console.log(`Section viewed: ${entry.target.id}`);
+                    // Ici vous pourriez envoyer des données analytics
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Observer les sections du menu
+        document.querySelectorAll('section[id]').forEach(section => {
+            observer.observe(section);
         });
     }
 
@@ -152,10 +174,13 @@ class RestaurantApp {
         
         // Échap pour fermer les modals
         if (e.key === 'Escape') {
-            if (!document.getElementById('cartModal').classList.contains('hidden')) {
+            const cartModal = document.getElementById('cartModal');
+            const imageModal = document.getElementById('imageModal');
+            
+            if (cartModal && cartModal.classList.contains('show')) {
                 this.closeModal('cartModal');
             }
-            if (!document.getElementById('imageModal').classList.contains('hidden')) {
+            if (imageModal && imageModal.classList.contains('show')) {
                 this.closeModal('imageModal');
             }
         }
@@ -164,23 +189,44 @@ class RestaurantApp {
     // Gestion du thème
     toggleTheme() {
         const themeToggleBtn = document.getElementById('themeToggleBtn');
-        const currentTheme = document.body.getAttribute('data-theme');
+        const currentTheme = document.body.getAttribute('data-theme') || 'light';
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
         
         document.body.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
-        themeToggleBtn.classList.toggle('theme-dark', newTheme === 'dark');
+        
+        if (themeToggleBtn) {
+            themeToggleBtn.classList.toggle('theme-dark', newTheme === 'dark');
+        }
+        
+        // Mise à jour des meta pour le SEO
+        this.updateThemeMeta(newTheme);
+    }
+
+    updateThemeMeta(theme) {
+        // Mise à jour de la meta theme-color pour le SEO
+        const themeColor = theme === 'dark' ? '#2d3748' : '#f5f7fa';
+        let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        
+        if (!metaThemeColor) {
+            metaThemeColor = document.createElement('meta');
+            metaThemeColor.name = 'theme-color';
+            document.head.appendChild(metaThemeColor);
+        }
+        metaThemeColor.content = themeColor;
     }
 
     // Plein écran
     toggleFullscreen() {
         const fullscreenBtn = document.getElementById('fullscreenBtn');
         if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
-            fullscreenBtn.classList.add('fullscreen');
+            document.documentElement.requestFullscreen().catch(err => {
+                console.log('Error attempting to enable fullscreen:', err);
+            });
+            if (fullscreenBtn) fullscreenBtn.classList.add('fullscreen');
         } else {
             document.exitFullscreen();
-            fullscreenBtn.classList.remove('fullscreen');
+            if (fullscreenBtn) fullscreenBtn.classList.remove('fullscreen');
         }
     }
 
@@ -190,7 +236,10 @@ class RestaurantApp {
         const isIncrease = button.classList.contains('increase');
         
         this.quantities[id] = Math.max(1, (this.quantities[id] || 1) + (isIncrease ? 1 : -1));
-        document.getElementById(`${id}-quantity`).textContent = this.quantities[id];
+        const quantityElement = document.getElementById(`${id}-quantity`);
+        if (quantityElement) {
+            quantityElement.textContent = this.quantities[id];
+        }
     }
 
     // Ajout au panier
@@ -207,11 +256,20 @@ class RestaurantApp {
         button.textContent = 'Ajouté !';
         button.disabled = true;
         
+        // Animation de confirmation
+        button.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            button.style.transform = 'scale(1)';
+        }, 150);
+        
         setTimeout(() => {
             button.textContent = originalText;
             button.disabled = false;
             this.quantities[id] = 1;
-            document.getElementById(`${id}-quantity`).textContent = 1;
+            const quantityElement = document.getElementById(`${id}-quantity`);
+            if (quantityElement) {
+                quantityElement.textContent = 1;
+            }
         }, 1000);
     }
 
@@ -225,6 +283,17 @@ class RestaurantApp {
         }
         
         this.updateCart();
+        this.triggerCartAnimation();
+    }
+
+    triggerCartAnimation() {
+        const cartBtn = document.getElementById('openCartBtn');
+        if (cartBtn) {
+            cartBtn.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                cartBtn.style.transform = 'scale(1)';
+            }, 300);
+        }
     }
 
     // Gestion du panier
@@ -286,13 +355,13 @@ class RestaurantApp {
                     <div class="flex items-center gap-2">
                         <span class="font-bold">${itemTotal.toFixed(2)}€</span>
                         <div class="flex space-x-1">
-                            <button class="cart-action-btn bg-green-500" onclick="app.addCartItem('${item.name}', ${item.price})" aria-label="Ajouter une unité">
+                            <button class="cart-action-btn bg-green-500" onclick="app.addCartItem('${this.escapeHtml(item.name)}', ${item.price})" aria-label="Ajouter une unité de ${this.escapeHtml(item.name)}">
                                 <i class="fas fa-plus"></i>
                             </button>
-                            <button class="cart-action-btn bg-yellow-500" onclick="app.decreaseCartItem('${item.name}', ${item.price})" aria-label="Diminuer une unité">
+                            <button class="cart-action-btn bg-yellow-500" onclick="app.decreaseCartItem('${this.escapeHtml(item.name)}', ${item.price})" aria-label="Diminuer une unité de ${this.escapeHtml(item.name)}">
                                 <i class="fas fa-minus"></i>
                             </button>
-                            <button class="cart-action-btn bg-red-500" onclick="app.removeCartItem('${item.name}', ${item.price})" aria-label="Supprimer">
+                            <button class="cart-action-btn bg-red-500" onclick="app.removeCartItem('${this.escapeHtml(item.name)}', ${item.price})" aria-label="Supprimer ${this.escapeHtml(item.name)}">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -304,6 +373,28 @@ class RestaurantApp {
 
         cartTotal.textContent = `Total: ${total.toFixed(2)}€`;
         this.saveCartToLocalStorage();
+        
+        // Mise à jour du bouton panier
+        this.updateCartButton();
+    }
+
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    updateCartButton() {
+        const cartBtn = document.getElementById('openCartBtn');
+        const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+        
+        if (cartBtn) {
+            if (totalItems > 0) {
+                cartBtn.innerHTML = `<i class="fas fa-shopping-cart"></i> Voir Commande (${totalItems})`;
+            } else {
+                cartBtn.innerHTML = `<i class="fas fa-shopping-cart"></i> Voir Commande`;
+            }
+        }
     }
 
     // Méthodes pour les boutons du panier (accessibles globalement)
@@ -331,21 +422,28 @@ class RestaurantApp {
     // Gestion des modals
     openModal(modalId) {
         const modal = document.getElementById(modalId);
+        if (!modal) return;
+        
         this.lastFocusedElement = document.activeElement;
         
         modal.classList.remove('hidden');
         modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Empêche le scroll du body
+        
         this.trapFocus(modal);
         
         // Focus sur le premier élément focusable
-        const firstFocusable = modal.querySelector('button, [href]');
+        const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
         if (firstFocusable) firstFocusable.focus();
     }
 
     closeModal(modalId) {
         const modal = document.getElementById(modalId);
+        if (!modal) return;
+        
         modal.classList.add('hidden');
         modal.classList.remove('show');
+        document.body.style.overflow = ''; // Rétablit le scroll
         
         if (this.lastFocusedElement) {
             this.lastFocusedElement.focus();
@@ -357,11 +455,13 @@ class RestaurantApp {
         const modalImage = document.getElementById('modalImage');
         const imageModalLabel = document.getElementById('imageModalLabel');
         
-        modalImage.src = src;
-        modalImage.alt = alt;
-        imageModalLabel.textContent = `Image agrandie: ${alt}`;
-        
-        this.openModal('imageModal');
+        if (modalImage && imageModalLabel) {
+            modalImage.src = src;
+            modalImage.alt = alt;
+            imageModalLabel.textContent = `Image agrandie: ${alt}`;
+            
+            this.openModal('imageModal');
+        }
     }
 
     openQRModal() {
@@ -398,10 +498,25 @@ class RestaurantApp {
         modal.addEventListener('keydown', handleKeyDown);
         
         // Nettoyage
-        const cleanup = () => modal.removeEventListener('keydown', handleKeyDown);
+        const cleanup = () => {
+            modal.removeEventListener('keydown', handleKeyDown);
+        };
+        
         modal.addEventListener('click', (e) => {
             if (e.target === modal) cleanup();
         }, { once: true });
+        
+        // Nettoyage quand le modal est fermé
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class' && !modal.classList.contains('show')) {
+                    cleanup();
+                    observer.disconnect();
+                }
+            });
+        });
+        
+        observer.observe(modal, { attributes: true });
     }
 
     // Scroll to top
@@ -422,8 +537,13 @@ class RestaurantApp {
 
     // Gestion des erreurs
     handleImageError(img) {
+        console.warn('Image failed to load:', img.src);
         img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5JbWFnZSBub24gZGlzcG9uaWJsZTwvdGV4dD48L3N2Zz4=';
         img.alt = 'Image non disponible';
+    }
+
+    handleImageLoad(img) {
+        img.classList.add('loaded');
     }
 
     // Responsive
@@ -442,30 +562,64 @@ class RestaurantApp {
         });
     }
 
+    // Service Worker pour PWA
+    setupServiceWorker() {
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    }
+
     // LocalStorage
     saveCartToLocalStorage() {
-        localStorage.setItem('restaurantCart', JSON.stringify(this.cart));
+        try {
+            localStorage.setItem('restaurantCart', JSON.stringify(this.cart));
+        } catch (error) {
+            console.error('Error saving cart to localStorage:', error);
+        }
     }
 
     loadCartFromLocalStorage() {
-        const savedCart = localStorage.getItem('restaurantCart');
-        if (savedCart) {
-            this.cart = JSON.parse(savedCart);
-            this.updateCart();
+        try {
+            const savedCart = localStorage.getItem('restaurantCart');
+            if (savedCart) {
+                this.cart = JSON.parse(savedCart);
+                this.updateCart();
+            }
+        } catch (error) {
+            console.error('Error loading cart from localStorage:', error);
+            this.cart = [];
         }
     }
 
     clearOldCart() {
-        const lastClear = localStorage.getItem('lastCartClear');
-        const now = new Date().getTime();
-        const oneDay = 24 * 60 * 60 * 1000;
+        try {
+            const lastClear = localStorage.getItem('lastCartClear');
+            const now = new Date().getTime();
+            const oneDay = 24 * 60 * 60 * 1000;
 
-        if (!lastClear || now - lastClear > oneDay) {
-            localStorage.removeItem('restaurantCart');
-            this.cart = [];
-            this.updateCart();
-            localStorage.setItem('lastCartClear', now);
+            if (!lastClear || now - lastClear > oneDay) {
+                localStorage.removeItem('restaurantCart');
+                this.cart = [];
+                this.updateCart();
+                localStorage.setItem('lastCartClear', now);
+            }
+        } catch (error) {
+            console.error('Error clearing old cart:', error);
         }
+    }
+
+    // Méthode utilitaire pour le SEO
+    updatePageTitle(section) {
+        const baseTitle = 'Le Camarguais - Restaurant Camargue';
+        document.title = `${section} | ${baseTitle}`;
     }
 }
 
@@ -483,7 +637,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialisation de l'app
     app = new RestaurantApp();
+    
+    // Mise à jour de la meta theme-color
+    app.updateThemeMeta(currentTheme);
 });
 
 // Rendre l'application accessible globalement pour les onclick HTML
 window.app = app;
+
+// Gestion des erreurs globales
+window.addEventListener('error', (event) => {
+    console.error('Global error:', event.error);
+});
+
+// Gestion des promesses non catchées
+window.addEventListener('unhandledrejection', (event) => {
+    console.error('Unhandled promise rejection:', event.reason);
+});

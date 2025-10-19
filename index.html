@@ -3,33 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Camarguais</title>
+    <title>Le Camarguais - Plats Traditionnels & Fast-Food | Port-Saint-Louis-du-Rhône</title>
+    <meta name="description" content="Le Camarguais - à Port-Saint-Louis-du-Rhône. Découvrez nos plats traditionnels camarguais, sandwiches, burgers et desserts maison. Commandez en ligne ou appelez au 04 26 48 47 56">
+    <meta name="author" content="Le Camarguais">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Le Camarguais - Salon de thé traditionnel en Camargue">
+    <meta property="og:description" content="Découvrez nos plats camarguais, sandwiches et burgers maison à Port-Saint-Louis-du-Rhône">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    
+    <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icon/favicon-16x16.png">
     <link rel="manifest" href="assets/manifest/site.webmanifest">
+    
+    <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bgcanvas.css">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Salon de thé",
+            "name": "Le Camarguais",
+            "description": "Salon de thé traditionnel en Camargue proposant plats régionaux, sandwiches et burgers maison",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Port-Saint-Louis-du-Rhône",
+                "postalCode": "13230",
+                "addressRegion": "Bouches-du-Rhône",
+                "addressCountry": "FR"
+            },
+            "telephone": "+33426484756",
+            "servesCuisine": ["Française", "Camarguaise", "Méditerranéenne"],
+            "priceRange": "€",
+            "openingHours": "Mo-Su",
+            "url": "https://le-camarguais.netlify.app/",
+            "menu": "https://le-camarguais.netlify.app/",
+            "sameAs": [
+                "https://www.snapchat.com/add/camarguais13230"
+            ]
+        }
+    </script>
+
 </head>
 
 <body class="min-h-screen flex flex-col" data-theme="light">
-    <canvas id="bgcanvas"></canvas>
+    <canvas id="bgcanvas" aria-hidden="true" loading="lazy"></canvas>
 
-    <header class="header-bg text-white text-center py-6 px-4">
+    <header class="header-bg text-white text-center py-6 px-4" role="banner">
         <div class="header-overlay"></div>
         <div class="flex items-center justify-center gap-2 flex-col sm:flex-row relative z-10">
-            <!-- <img src="assets/images/logo.png" alt="Logo du Restaurant" class="header-logo"> -->
-            <!-- <img src="/assets/images/logo.png" alt="Logo du Restaurant" class="header-logo">
-            -->
-            <img src="./assets/images/logo.png" alt="Logo du Restaurant" class="header-logo gold-metal">
-
-
+            <img src="assets/images/logo.png" alt="Logo Le Camarguais - Restaurant traditionnel en Camargue" class="header-logo gold-metal">
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4 animate-pulse-text">Le Camarguais</h1>
         </div>
-        <div class="flex flex-wrap justify-center gap-2 relative z-10">
+        <nav class="flex flex-wrap justify-center gap-2 relative z-10" aria-label="Navigation principale">
             <button id="themeToggleBtn" class="btn-header" aria-label="Changer le thème"><span class="icon-theme"></span></button>
             <button id="fullscreenBtn" class="btn-header" aria-label="Mode plein écran"><span class="icon-fullscreen"></span></button>
             <a href="tel:+33426484756" class="btn-header btn-phone" aria-label="Appeler le restaurant"><i class="fas fa-phone"></i></a>
@@ -37,104 +72,114 @@
             <a href="https://www.snapchat.com/add/camarguais13230" class="btn-header btn-snapchat" aria-label="Suivre sur Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
             <a href="assets/html/promotionNON.html" class="btn-header" aria-label="Voir les promotions">Promo</a>
             <button id="qrBtn" class="btn-header" aria-label="Voir le QR Code"><i class="fas fa-qrcode"></i></button>
-        </div>
+        </nav>
     </header>
 
-    <main class="flex-grow container mx-auto px-4 py-6">
+    <main class="flex-grow container mx-auto px-4 py-6" id="menu">
         <!-- Section Boissons -->
-        <section id="boissons" class="section-card p-4 sm:p-6 mb-8">
+        <section id="boissons" class="section-card p-4 sm:p-6 mb-8" itemscope itemtype="https://schema.org/MenuSection">
             <h2 class="section-title">Boissons</h2>
             <div class="image-container mx-auto mb-4">
-                <img src="assets/images/boissons.png" alt="Boissons" class="menu-img" data-src="assets/images/boissons.png" data-alt="Boissons">
+                <img src="assets/images/boissons.png" alt="Boissons fraîches au restaurant Le Camarguais" class="menu-img" data-src="assets/images/boissons.png" data-alt="Boissons fraîches">
             </div>
             <ul class="menu-list boissons-grid">
-                <li class="menu-item">
-                    <strong>Canette 33cl</strong> : 1.50€<br>Rafraîchissement en canette de 33cl.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Canette 33cl</strong> : <span itemprop="price">1.50€</span><br>
+                    <span itemprop="description">Rafraîchissement en canette de 33cl</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="canette-33cl" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="canette-33cl" aria-label="Diminuer quantité canette">-</button>
                         <span id="canette-33cl-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="canette-33cl" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="canette-33cl" aria-label="Augmenter quantité canette">+</button>
                         <button class="add-to-cart" data-name="Canette 33cl" data-price="1.50" data-id="canette-33cl">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Redbull 25cl</strong> : 2€<br>Boisson énergisante Redbull en canette de 25cl.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Redbull 25cl</strong> : <span itemprop="price">2€</span><br>
+                    <span itemprop="description">Boisson énergisante Redbull en canette de 25cl</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="redbull-25cl" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="redbull-25cl" aria-label="Diminuer quantité redbull">-</button>
                         <span id="redbull-25cl-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="redbull-25cl" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="redbull-25cl" aria-label="Augmenter quantité redbull">+</button>
                         <button class="add-to-cart" data-name="Redbull 25cl" data-price="2" data-id="redbull-25cl">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Limonade Artisanale 42cl</strong> : 2€<br>Limonade artisanale rafraîchissante en bouteille de 42cl.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Limonade Artisanale 42cl</strong> : <span itemprop="price">2€</span><br>
+                    <span itemprop="description">Limonade artisanale rafraîchissante en bouteille de 42cl</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="limonade-artisanale" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="limonade-artisanale" aria-label="Diminuer quantité limonade">-</button>
                         <span id="limonade-artisanale-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="limonade-artisanale" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="limonade-artisanale" aria-label="Augmenter quantité limonade">+</button>
                         <button class="add-to-cart" data-name="Limonade Artisanale 42cl" data-price="2" data-id="limonade-artisanale">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Perrier petite bouteille verre</strong> : 2€<br>Eau pétillante Perrier en bouteille verre.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Perrier petite bouteille verre</strong> : <span itemprop="price">2€</span><br>
+                    <span itemprop="description">Eau pétillante Perrier en bouteille verre</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="perrier-verre" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="perrier-verre" aria-label="Diminuer quantité perrier">-</button>
                         <span id="perrier-verre-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="perrier-verre" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="perrier-verre" aria-label="Augmenter quantité perrier">+</button>
                         <button class="add-to-cart" data-name="Perrier verre" data-price="2" data-id="perrier-verre">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Orangina verre 33cl</strong> : 2€<br>Boisson gazeuse aux agrumes en bouteille verre de 33cl.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Orangina verre 33cl</strong> : <span itemprop="price">2€</span><br>
+                    <span itemprop="description">Boisson gazeuse aux agrumes en bouteille verre de 33cl</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="orangina-verre" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="orangina-verre" aria-label="Diminuer quantité orangina">-</button>
                         <span id="orangina-verre-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="orangina-verre" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="orangina-verre" aria-label="Augmenter quantité orangina">+</button>
                         <button class="add-to-cart" data-name="Orangina verre 33cl" data-price="2" data-id="orangina-verre">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Bouteille Crystalin fraise 50cl</strong> : 2€<br>Boisson Crystalin saveur fraise en bouteille de 50cl.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Bouteille Crystalin fraise 50cl</strong> : <span itemprop="price">2€</span><br>
+                    <span itemprop="description">Boisson Crystalin saveur fraise en bouteille de 50cl</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="crystalin-fraise" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="crystalin-fraise" aria-label="Diminuer quantité crystalin fraise">-</button>
                         <span id="crystalin-fraise-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="crystalin-fraise" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="crystalin-fraise" aria-label="Augmenter quantité crystalin fraise">+</button>
                         <button class="add-to-cart" data-name="Crystalin fraise 50cl" data-price="2" data-id="crystalin-fraise">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Bouteille Crystalin</strong> : 1€<br>Boisson Crystalin nature en bouteille.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Bouteille Crystalin</strong> : <span itemprop="price">1€</span><br>
+                    <span itemprop="description">Boisson Crystalin nature en bouteille</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="crystalin-nature" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="crystalin-nature" aria-label="Diminuer quantité crystalin nature">-</button>
                         <span id="crystalin-nature-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="crystalin-nature" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="crystalin-nature" aria-label="Augmenter quantité crystalin nature">+</button>
                         <button class="add-to-cart" data-name="Crystalin nature" data-price="1" data-id="crystalin-nature">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Capri-Sun</strong> : 1€<br>Boisson fruitée Capri-Sun en sachet.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Capri-Sun</strong> : <span itemprop="price">1€</span><br>
+                    <span itemprop="description">Boisson fruitée Capri-Sun en sachet</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="capri-sun" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="capri-sun" aria-label="Diminuer quantité capri-sun">-</button>
                         <span id="capri-sun-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="capri-sun" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="capri-sun" aria-label="Augmenter quantité capri-sun">+</button>
                         <button class="add-to-cart" data-name="Capri-Sun" data-price="1" data-id="capri-sun">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Sirop</strong> : 2€<br>Sirop à diluer au choix.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Sirop</strong> : <span itemprop="price">2€</span><br>
+                    <span itemprop="description">Sirop à diluer au choix</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="sirop" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="sirop" aria-label="Diminuer quantité sirop">-</button>
                         <span id="sirop-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="sirop" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="sirop" aria-label="Augmenter quantité sirop">+</button>
                         <button class="add-to-cart" data-name="Sirop" data-price="2" data-id="sirop">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>PAGO</strong> : 2€<br>Jus de fruits PAGO.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">PAGO</strong> : <span itemprop="price">2€</span><br>
+                    <span itemprop="description">Jus de fruits PAGO</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="pago" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="pago" aria-label="Diminuer quantité pago">-</button>
                         <span id="pago-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="pago" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="pago" aria-label="Augmenter quantité pago">+</button>
                         <button class="add-to-cart" data-name="PAGO" data-price="2" data-id="pago">Ajouter</button>
                     </div>
                 </li>
@@ -142,36 +187,39 @@
         </section>
 
         <!-- Section Plats de la Semaine -->
-        <section id="plats-semaine" class="section-card p-4 sm:p-6 mb-8">
+        <section id="plats-semaine" class="section-card p-4 sm:p-6 mb-8" itemscope itemtype="https://schema.org/MenuSection">
             <h2 class="section-title">Plats de la Semaine "En barquette"</h2>
             <div class="image-container mx-auto mb-4">
-                <img src="assets/images/plats-semaine.jpg" alt="Plats de la semaine" class="menu-img" data-src="assets/images/plats-semaine.jpg" data-alt="Plats de la semaine">
+                <img src="assets/images/plats-semaine.jpg" alt="Plats de la semaine du restaurant Le Camarguais" class="menu-img" data-src="assets/images/plats-semaine.jpg" data-alt="Plats de la semaine">
             </div>
             <ul class="menu-list">
-                <li class="menu-item">
-                    <strong>Couscous "selon humeur"</strong> : 10€<br>Couscous traditionnel préparé selon l'humeur du chef, avec semoule, légumes et viandes.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Couscous "selon humeur"</strong> : <span itemprop="price">10€</span><br>
+                    <span itemprop="description">Couscous traditionnel préparé selon l'humeur du chef, avec semoule, légumes et viandes</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="couscous" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="couscous" aria-label="Diminuer quantité couscous">-</button>
                         <span id="couscous-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="couscous" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="couscous" aria-label="Augmenter quantité couscous">+</button>
                         <button class="add-to-cart" data-name="Couscous selon humeur" data-price="10" data-id="couscous">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Paella "selon humeur"</strong> : 10€<br>Paella espagnole préparée selon l'inspiration du chef, avec riz, fruits de mer et légumes.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Paella "selon humeur"</strong> : <span itemprop="price">10€</span><br>
+                    <span itemprop="description">Paella espagnole préparée selon l'inspiration du chef, avec riz, fruits de mer et légumes</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="paella" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="paella" aria-label="Diminuer quantité paella">-</button>
                         <span id="paella-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="paella" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="paella" aria-label="Augmenter quantité paella">+</button>
                         <button class="add-to-cart" data-name="Paella selon humeur" data-price="10" data-id="paella">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Daube "selon Humeur"</strong> : 10€<br>Daube provençale mijotée selon l'humeur du chef, viande tendre et sauce riche.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Daube "selon Humeur"</strong> : <span itemprop="price">10€</span><br>
+                    <span itemprop="description">Daube provençale mijotée selon l'humeur du chef, viande tendre et sauce riche</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="daube" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="daube" aria-label="Diminuer quantité daube">-</button>
                         <span id="daube-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="daube" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="daube" aria-label="Augmenter quantité daube">+</button>
                         <button class="add-to-cart" data-name="Daube selon humeur" data-price="10" data-id="daube">Ajouter</button>
                     </div>
                 </li>
@@ -179,36 +227,39 @@
         </section>
 
         <!-- Section Sandwiches -->
-        <section id="sandwiches" class="section-card p-4 sm:p-6 mb-8">
+        <section id="sandwiches" class="section-card p-4 sm:p-6 mb-8" itemscope itemtype="https://schema.org/MenuSection">
             <h2 class="section-title">Sandwiches "Demie-baguette"</h2>
             <div class="image-container mx-auto mb-4">
-                <img src="assets/images/Jambon-Beurre.jpg" alt="Sandwich Jambon Emmental Beurre" class="menu-img" data-src="assets/images/Jambon-Beurre.jpg" data-alt="Sandwich Jambon Emmental Beurre">
+                <img src="assets/images/Jambon-Beurre.jpg" alt="Sandwich Jambon Emmental Beurre au restaurant Le Camarguais" class="menu-img" data-src="assets/images/Jambon-Beurre.jpg" data-alt="Sandwich Jambon Emmental Beurre">
             </div>
             <ul class="menu-list">
-                <li class="menu-item">
-                    <strong>Jambon emmental beurre</strong> : 4.50€<br>Un classique français avec jambon de qualité, emmental fondant et beurre frais sur une demie-baguette croustillante.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Jambon emmental beurre</strong> : <span itemprop="price">4.50€</span><br>
+                    <span itemprop="description">Un classique français avec jambon de qualité, emmental fondant et beurre frais sur une demie-baguette croustillante</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="jambon-emmental-beurre" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="jambon-emmental-beurre" aria-label="Diminuer quantité jambon emmental">-</button>
                         <span id="jambon-emmental-beurre-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="jambon-emmental-beurre" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="jambon-emmental-beurre" aria-label="Augmenter quantité jambon emmental">+</button>
                         <button class="add-to-cart" data-name="Jambon emmental beurre" data-price="4.50" data-id="jambon-emmental-beurre">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Saucisson beurre</strong> : 4.50€<br>Saucisson sec tranché finement avec du beurre doux pour une saveur rustique.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Saucisson beurre</strong> : <span itemprop="price">4.50€</span><br>
+                    <span itemprop="description">Saucisson sec tranché finement avec du beurre doux pour une saveur rustique</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="saucisson-beurre" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="saucisson-beurre" aria-label="Diminuer quantité saucisson">-</button>
                         <span id="saucisson-beurre-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="saucisson-beurre" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="saucisson-beurre" aria-label="Augmenter quantité saucisson">+</button>
                         <button class="add-to-cart" data-name="Saucisson beurre" data-price="4.50" data-id="saucisson-beurre">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Halal jambon emmental</strong> : 4.50€<br>Jambon halal tendre et emmental, option halal pleine de goût.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Halal jambon emmental</strong> : <span itemprop="price">4.50€</span><br>
+                    <span itemprop="description">Jambon halal tendre et emmental, option halal pleine de goût</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="halal-jambon-emmental" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="halal-jambon-emmental" aria-label="Diminuer quantité halal jambon">-</button>
                         <span id="halal-jambon-emmental-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="halal-jambon-emmental" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="halal-jambon-emmental" aria-label="Augmenter quantité halal jambon">+</button>
                         <button class="add-to-cart" data-name="Halal jambon emmental" data-price="4.50" data-id="halal-jambon-emmental">Ajouter</button>
                     </div>
                 </li>
@@ -216,18 +267,19 @@
         </section>
 
         <!-- Section Burrata -->
-        <section id="burrata" class="section-card p-4 sm:p-6 mb-8">
+        <section id="burrata" class="section-card p-4 sm:p-6 mb-8" itemscope itemtype="https://schema.org/MenuSection">
             <h2 class="section-title">Burrata</h2>
             <div class="image-container mx-auto mb-4">
-                <img src="assets/images/Burrata.jpg" alt="Burrata Mortadella Emmental" class="menu-img" data-src="assets/images/Burrata.jpg" data-alt="Burrata Mortadella Emmental">
+                <img src="assets/images/Burrata.jpg" alt="Burrata Mortadella Emmental au restaurant Le Camarguais" class="menu-img" data-src="assets/images/Burrata.jpg" data-alt="Burrata Mortadella Emmental">
             </div>
             <ul class="menu-list">
-                <li class="menu-item">
-                    <strong>Burrata mortadella emmental</strong> : 5€<br>Explosion de saveurs italiennes avec burrata crémeuse, mortadella et emmental.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Burrata mortadella emmental</strong> : <span itemprop="price">5€</span><br>
+                    <span itemprop="description">Explosion de saveurs italiennes avec burrata crémeuse, mortadella et emmental</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="burrata-mortadella-emmental" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="burrata-mortadella-emmental" aria-label="Diminuer quantité burrata">-</button>
                         <span id="burrata-mortadella-emmental-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="burrata-mortadella-emmental" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="burrata-mortadella-emmental" aria-label="Augmenter quantité burrata">+</button>
                         <button class="add-to-cart" data-name="Burrata mortadella emmental" data-price="5" data-id="burrata-mortadella-emmental">Ajouter</button>
                     </div>
                 </li>
@@ -235,18 +287,19 @@
         </section>
 
         <!-- Section Croque Monsieur -->
-        <section id="croque" class="section-card p-4 sm:p-6 mb-8">
+        <section id="croque" class="section-card p-4 sm:p-6 mb-8" itemscope itemtype="https://schema.org/MenuSection">
             <h2 class="section-title">Croque Monsieur</h2>
             <div class="image-container mx-auto mb-4">
-                <img src="assets/images/Croque-Monsieur.webp" alt="Croque Monsieur Nature" class="menu-img" data-src="assets/images/Croque-Monsieur.webp" data-alt="Croque Monsieur Nature">
+                <img src="assets/images/Croque-Monsieur.webp" alt="Croque Monsieur Nature au restaurant Le Camarguais" class="menu-img" data-src="assets/images/Croque-Monsieur.webp" data-alt="Croque Monsieur Nature">
             </div>
             <ul class="menu-list">
-                <li class="menu-item">
-                    <strong>Croque Monsieur nature</strong> : 4.50€<br>Grillé à la perfection avec jambon, fromage et béchamel.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Croque Monsieur nature</strong> : <span itemprop="price">4.50€</span><br>
+                    <span itemprop="description">Grillé à la perfection avec jambon, fromage et béchamel</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="croque-monsieur-nature" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="croque-monsieur-nature" aria-label="Diminuer quantité croque monsieur">-</button>
                         <span id="croque-monsieur-nature-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="croque-monsieur-nature" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="croque-monsieur-nature" aria-label="Augmenter quantité croque monsieur">+</button>
                         <button class="add-to-cart" data-name="Croque Monsieur nature" data-price="4.50" data-id="croque-monsieur-nature">Ajouter</button>
                     </div>
                 </li>
@@ -254,81 +307,89 @@
         </section>
 
         <!-- Section Paninis -->
-        <section id="paninis" class="section-card p-4 sm:p-6 mb-8">
+        <section id="paninis" class="section-card p-4 sm:p-6 mb-8" itemscope itemtype="https://schema.org/MenuSection">
             <h2 class="section-title">Panini (5€)</h2>
             <div class="image-container mx-auto mb-4">
-                <img src="assets/images/Panini.jpg" alt="Panini Saumon Boursin" class="menu-img" data-src="assets/images/Panini.jpg" data-alt="Panini Saumon Boursin">
+                <img src="assets/images/Panini.jpg" alt="Panini Saumon Boursin au restaurant Le Camarguais" class="menu-img" data-src="assets/images/Panini.jpg" data-alt="Panini Saumon Boursin">
             </div>
             <ul class="menu-list">
-                <li class="menu-item">
-                    <strong>Saumon boursin</strong><br>Saumon fumé et boursin crémeux, grillé à souhait.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Saumon boursin</strong><br>
+                    <span itemprop="description">Saumon fumé et boursin crémeux, grillé à souhait</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="saumon-boursin" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="saumon-boursin" aria-label="Diminuer quantité saumon boursin">-</button>
                         <span id="saumon-boursin-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="saumon-boursin" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="saumon-boursin" aria-label="Augmenter quantité saumon boursin">+</button>
                         <button class="add-to-cart" data-name="Saumon boursin" data-price="5" data-id="saumon-boursin">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Poulet boursin</strong><br>Poulet rôti juteux avec boursin onctueux.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Poulet boursin</strong><br>
+                    <span itemprop="description">Poulet rôti juteux avec boursin onctueux</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="poulet-boursin" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="poulet-boursin" aria-label="Diminuer quantité poulet boursin">-</button>
                         <span id="poulet-boursin-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="poulet-boursin" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="poulet-boursin" aria-label="Augmenter quantité poulet boursin">+</button>
                         <button class="add-to-cart" data-name="Poulet boursin" data-price="5" data-id="poulet-boursin">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Jambon cru chèvre</strong><br>Jambon cru salé et chèvre frais, saveur méditerranéenne.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Jambon cru chèvre</strong><br>
+                    <span itemprop="description">Jambon cru salé et chèvre frais, saveur méditerranéenne</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="jambon-cru-chevre" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="jambon-cru-chevre" aria-label="Diminuer quantité jambon cru chèvre">-</button>
                         <span id="jambon-cru-chevre-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="jambon-cru-chevre" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="jambon-cru-chevre" aria-label="Augmenter quantité jambon cru chèvre">+</button>
                         <button class="add-to-cart" data-name="Jambon cru chèvre" data-price="5" data-id="jambon-cru-chevre">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>3 fromages</strong><br>Trio de fromages fondus pour les amateurs.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">3 fromages</strong><br>
+                    <span itemprop="description">Trio de fromages fondus pour les amateurs</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="3-fromages" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="3-fromages" aria-label="Diminuer quantité 3 fromages">-</button>
                         <span id="3-fromages-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="3-fromages" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="3-fromages" aria-label="Augmenter quantité 3 fromages">+</button>
                         <button class="add-to-cart" data-name="3 fromages" data-price="5" data-id="3-fromages">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Jambon emmental</strong><br>Jambon et emmental coulant, réconfortant.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Jambon emmental</strong><br>
+                    <span itemprop="description">Jambon et emmental coulant, réconfortant</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="jambon-emmental" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="jambon-emmental" aria-label="Diminuer quantité jambon emmental">-</button>
                         <span id="jambon-emmental-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="jambon-emmental" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="jambon-emmental" aria-label="Augmenter quantité jambon emmental">+</button>
                         <button class="add-to-cart" data-name="Jambon emmental" data-price="5" data-id="jambon-emmental">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Chorizo tomate mozzarella</strong><br>Chorizo épicé, tomates et mozzarella filante.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Chorizo tomate mozzarella</strong><br>
+                    <span itemprop="description">Chorizo épicé, tomates et mozzarella filante</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="chorizo-tomate-mozzarella" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="chorizo-tomate-mozzarella" aria-label="Diminuer quantité chorizo">-</button>
                         <span id="chorizo-tomate-mozzarella-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="chorizo-tomate-mozzarella" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="chorizo-tomate-mozzarella" aria-label="Augmenter quantité chorizo">+</button>
                         <button class="add-to-cart" data-name="Chorizo tomate mozzarella" data-price="5" data-id="chorizo-tomate-mozzarella">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Reblochon</strong><br>Reblochon fondant, style montagnard.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Reblochon</strong><br>
+                    <span itemprop="description">Reblochon fondant, style montagnard</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="reblochon" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="reblochon" aria-label="Diminuer quantité reblochon">-</button>
                         <span id="reblochon-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="reblochon" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="reblochon" aria-label="Augmenter quantité reblochon">+</button>
                         <button class="add-to-cart" data-name="Reblochon" data-price="5" data-id="reblochon">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Reblochon lardons</strong><br>Reblochon avec lardons croustillants.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Reblochon lardons</strong><br>
+                    <span itemprop="description">Reblochon avec lardons croustillants</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="reblochon-lardons" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="reblochon-lardons" aria-label="Diminuer quantité reblochon lardons">-</button>
                         <span id="reblochon-lardons-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="reblochon-lardons" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="reblochon-lardons" aria-label="Augmenter quantité reblochon lardons">+</button>
                         <button class="add-to-cart" data-name="Reblochon lardons" data-price="5" data-id="reblochon-lardons">Ajouter</button>
                     </div>
                 </li>
@@ -336,25 +397,26 @@
         </section>
 
         <!-- Section Bruschetta -->
-        <section id="bruschetta" class="section-card p-4 sm:p-6 mb-8">
+        <section id="bruschetta" class="section-card p-4 sm:p-6 mb-8" itemscope itemtype="https://schema.org/MenuSection">
             <h2 class="section-title">Bruschetta</h2>
             <div class="image-container mx-auto mb-4">
-                <img src="assets/images/Bruschetta1.jpg" alt="Bruschetta Base Crème ou Tomate" class="menu-img" data-src="assets/images/Bruschetta1.jpg" data-alt="Bruschetta Base Crème ou Tomate">
+                <img src="assets/images/Bruschetta1.jpg" alt="Bruschetta Base Crème ou Tomate au restaurant Le Camarguais" class="menu-img" data-src="assets/images/Bruschetta1.jpg" data-alt="Bruschetta Base Crème ou Tomate">
             </div>
             <ul class="menu-list">
-                <li class="menu-item">
-                    <strong>Base crème ou tomate</strong> : 6€ / 9€<br>Pain grillé garni de crème onctueuse ou tomate fraîche.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Base crème ou tomate</strong> : <span itemprop="offers" itemscope itemtype="https://schema.org/Offer"><span itemprop="price">6€</span> / <span itemprop="price">9€</span></span><br>
+                    <span itemprop="description">Pain grillé garni de crème onctueuse ou tomate fraîche</span>
                     <div class="quantity-controls-group">
                         <div class="quantity-controls">
-                            <button class="quantity-btn decrease" data-id="base-creme" aria-label="Diminuer quantité">-</button>
+                            <button class="quantity-btn decrease" data-id="base-creme" aria-label="Diminuer quantité base crème">-</button>
                             <span id="base-creme-quantity" class="quantity-display">1</span>
-                            <button class="quantity-btn increase" data-id="base-creme" aria-label="Augmenter quantité">+</button>
+                            <button class="quantity-btn increase" data-id="base-creme" aria-label="Augmenter quantité base crème">+</button>
                             <button class="add-to-cart" data-name="Base crème" data-price="6" data-id="base-creme">Ajouter (crème)</button>
                         </div>
                         <div class="quantity-controls">
-                            <button class="quantity-btn decrease" data-id="base-tomate" aria-label="Diminuer quantité">-</button>
+                            <button class="quantity-btn decrease" data-id="base-tomate" aria-label="Diminuer quantité base tomate">-</button>
                             <span id="base-tomate-quantity" class="quantity-display">1</span>
-                            <button class="quantity-btn increase" data-id="base-tomate" aria-label="Augmenter quantité">+</button>
+                            <button class="quantity-btn increase" data-id="base-tomate" aria-label="Augmenter quantité base tomate">+</button>
                             <button class="add-to-cart" data-name="Base tomate" data-price="9" data-id="base-tomate">Ajouter (tomate)</button>
                         </div>
                     </div>
@@ -363,27 +425,29 @@
         </section>
 
         <!-- Section Burgers -->
-        <section id="burgers" class="section-card p-4 sm:p-6 mb-8">
+        <section id="burgers" class="section-card p-4 sm:p-6 mb-8" itemscope itemtype="https://schema.org/MenuSection">
             <h2 class="section-title">Burgers</h2>
             <div class="image-container mx-auto mb-4">
-                <img src="assets/images/Hamburger1.jpg" alt="Burger Simple" class="menu-img" data-src="assets/images/Hamburger1.jpg" data-alt="Burger Simple">
+                <img src="assets/images/Hamburger1.jpg" alt="Burger Simple au restaurant Le Camarguais" class="menu-img" data-src="assets/images/Hamburger1.jpg" data-alt="Burger Simple">
             </div>
             <ul class="menu-list">
-                <li class="menu-item">
-                    <strong>Burger simple</strong> : 6€<br>Viande juteuse, fromage fondant et légumes frais.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Burger simple</strong> : <span itemprop="price">6€</span><br>
+                    <span itemprop="description">Viande juteuse, fromage fondant et légumes frais</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="burger-simple" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="burger-simple" aria-label="Diminuer quantité burger simple">-</button>
                         <span id="burger-simple-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="burger-simple" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="burger-simple" aria-label="Augmenter quantité burger simple">+</button>
                         <button class="add-to-cart" data-name="Burger simple" data-price="6" data-id="burger-simple">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Burger double</strong> : 8€<br>Double steak pour plus de gourmandise.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Burger double</strong> : <span itemprop="price">8€</span><br>
+                    <span itemprop="description">Double steak pour plus de gourmandise</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="burger-double" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="burger-double" aria-label="Diminuer quantité burger double">-</button>
                         <span id="burger-double-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="burger-double" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="burger-double" aria-label="Augmenter quantité burger double">+</button>
                         <button class="add-to-cart" data-name="Burger double" data-price="8" data-id="burger-double">Ajouter</button>
                     </div>
                 </li>
@@ -391,36 +455,39 @@
         </section>
 
         <!-- Section Autres -->
-        <section id="autres" class="section-card p-4 sm:p-6 mb-8">
+        <section id="autres" class="section-card p-4 sm:p-6 mb-8" itemscope itemtype="https://schema.org/MenuSection">
             <h2 class="section-title">Autres</h2>
             <div class="image-container mx-auto mb-4">
-                <img src="assets/images/HotDog1.jpg" alt="Hot Dog" class="menu-img" data-src="assets/images/HotDog1.jpg" data-alt="Hot Dog">
+                <img src="assets/images/HotDog1.jpg" alt="Hot Dog au restaurant Le Camarguais" class="menu-img" data-src="assets/images/HotDog1.jpg" data-alt="Hot Dog">
             </div>
             <ul class="menu-list">
-                <li class="menu-item">
-                    <strong>Portion pizza</strong> : 2€<br>Part croustillante avec sauce tomate et toppings.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Portion pizza</strong> : <span itemprop="price">2€</span><br>
+                    <span itemprop="description">Part croustillante avec sauce tomate et toppings</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="portion-pizza" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="portion-pizza" aria-label="Diminuer quantité portion pizza">-</button>
                         <span id="portion-pizza-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="portion-pizza" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="portion-pizza" aria-label="Augmenter quantité portion pizza">+</button>
                         <button class="add-to-cart" data-name="Portion pizza" data-price="2" data-id="portion-pizza">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Hot dog viande hachée</strong> : 7€<br>Viande hachée épicée avec oignons et sauces.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Hot dog viande hachée</strong> : <span itemprop="price">7€</span><br>
+                    <span itemprop="description">Viande hachée épicée avec oignons et sauces</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="hot-dog-viande-hachee" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="hot-dog-viande-hachee" aria-label="Diminuer quantité hot dog viande">-</button>
                         <span id="hot-dog-viande-hachee-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="hot-dog-viande-hachee" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="hot-dog-viande-hachee" aria-label="Augmenter quantité hot dog viande">+</button>
                         <button class="add-to-cart" data-name="Hot dog viande hachée" data-price="7" data-id="hot-dog-viande-hachee">Ajouter</button>
                     </div>
                 </li>
-                <li class="menu-item">
-                    <strong>Hot dog saucisse</strong> : 7€<br>Saucisse grillée avec condiments.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Hot dog saucisse</strong> : <span itemprop="price">7€</span><br>
+                    <span itemprop="description">Saucisse grillée avec condiments</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="hot-dog-saucisse" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="hot-dog-saucisse" aria-label="Diminuer quantité hot dog saucisse">-</button>
                         <span id="hot-dog-saucisse-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="hot-dog-saucisse" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="hot-dog-saucisse" aria-label="Augmenter quantité hot dog saucisse">+</button>
                         <button class="add-to-cart" data-name="Hot dog saucisse" data-price="7" data-id="hot-dog-saucisse">Ajouter</button>
                     </div>
                 </li>
@@ -428,42 +495,44 @@
         </section>
 
         <!-- Section Desserts -->
-        <section id="desserts" class="section-card p-4 sm:p-6 mb-8">
+        <section id="desserts" class="section-card p-4 sm:p-6 mb-8" itemscope itemtype="https://schema.org/MenuSection">
             <h2 class="section-title">Desserts</h2>
             <div class="image-container mx-auto mb-4">
-                <img src="assets/images/Tiramisu-Speculoos.jpg" alt="Tiramisu Speculoos" class="menu-img" data-src="assets/images/Tiramisu-Speculoos.jpg" data-alt="Tiramisu Speculoos">
+                <img src="assets/images/Tiramisu-Speculoos.jpg" alt="Tiramisu Speculoos au restaurant Le Camarguais" class="menu-img" data-src="assets/images/Tiramisu-Speculoos.jpg" data-alt="Tiramisu Speculoos">
             </div>
             <ul class="menu-list">
-                <li class="menu-item">
-                    <strong>Tiramisu speculoos</strong> : 4€<br>Revisité avec biscuits speculoos et mascarpone.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Tiramisu speculoos</strong> : <span itemprop="price">4€</span><br>
+                    <span itemprop="description">Revisité avec biscuits speculoos et mascarpone</span>
                     <div class="quantity-controls">
-                        <button class="quantity-btn decrease" data-id="tiramisu-speculoos" aria-label="Diminuer quantité">-</button>
+                        <button class="quantity-btn decrease" data-id="tiramisu-speculoos" aria-label="Diminuer quantité tiramisu">-</button>
                         <span id="tiramisu-speculoos-quantity" class="quantity-display">1</span>
-                        <button class="quantity-btn increase" data-id="tiramisu-speculoos" aria-label="Augmenter quantité">+</button>
+                        <button class="quantity-btn increase" data-id="tiramisu-speculoos" aria-label="Augmenter quantité tiramisu">+</button>
                         <button class="add-to-cart" data-name="Tiramisu speculoos" data-price="4" data-id="tiramisu-speculoos">Ajouter</button>
                     </div>
                 </li>
             </ul>
             <div class="image-container mx-auto mb-4">
-                <img src="assets/images/Tarte-Daim.webp" alt="Tarte Daim" class="menu-img" data-src="assets/images/Tarte-Daim.webp" data-alt="Tarte Daim">
+                <img src="assets/images/Tarte-Daim.webp" alt="Tarte Daim au restaurant Le Camarguais" class="menu-img" data-src="assets/images/Tarte-Daim.webp" data-alt="Tarte Daim">
             </div>
             <div class="image-container mx-auto mb-4">
-                <img src="assets/images/Tarte-Oreo.jpg" alt="Tarte Oreo" class="menu-img" data-src="assets/images/Tarte-Oreo.jpg" data-alt="Tarte Oreo">
+                <img src="assets/images/Tarte-Oreo.jpg" alt="Tarte Oreo au restaurant Le Camarguais" class="menu-img" data-src="assets/images/Tarte-Oreo.jpg" data-alt="Tarte Oreo">
             </div>
             <ul class="menu-list">
-                <li class="menu-item">
-                    <strong>Tartes (Daim, Oreo)</strong> : 3€<br>Tartes maison au caramel croquant ou biscuit fondant.
+                <li class="menu-item" itemprop="hasMenuItem" itemscope itemtype="https://schema.org/MenuItem">
+                    <strong itemprop="name">Tartes (Daim, Oreo)</strong> : <span itemprop="price">3€</span><br>
+                    <span itemprop="description">Tartes maison au caramel croquant ou biscuit fondant</span>
                     <div class="quantity-controls-group">
                         <div class="quantity-controls">
-                            <button class="quantity-btn decrease" data-id="tarte-daim" aria-label="Diminuer quantité">-</button>
+                            <button class="quantity-btn decrease" data-id="tarte-daim" aria-label="Diminuer quantité tarte daim">-</button>
                             <span id="tarte-daim-quantity" class="quantity-display">1</span>
-                            <button class="quantity-btn increase" data-id="tarte-daim" aria-label="Augmenter quantité">+</button>
+                            <button class="quantity-btn increase" data-id="tarte-daim" aria-label="Augmenter quantité tarte daim">+</button>
                             <button class="add-to-cart" data-name="Tarte Daim" data-price="3" data-id="tarte-daim">Ajouter (Daim)</button>
                         </div>
                         <div class="quantity-controls">
-                            <button class="quantity-btn decrease" data-id="tarte-oreo" aria-label="Diminuer quantité">-</button>
+                            <button class="quantity-btn decrease" data-id="tarte-oreo" aria-label="Diminuer quantité tarte oreo">-</button>
                             <span id="tarte-oreo-quantity" class="quantity-display">1</span>
-                            <button class="quantity-btn increase" data-id="tarte-oreo" aria-label="Augmenter quantité">+</button>
+                            <button class="quantity-btn increase" data-id="tarte-oreo" aria-label="Augmenter quantité tarte oreo">+</button>
                             <button class="add-to-cart" data-name="Tarte Oreo" data-price="3" data-id="tarte-oreo">Ajouter (Oreo)</button>
                         </div>
                     </div>
@@ -508,8 +577,9 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <footer class="footer">
-        <p>© 2025 Le Camarguais - Images/Photos non contractuelles Attention "Site Web a titre d'info pour les prix AUCUNE commandes ne sera prises en comptes - Tous droits réservés</p>
+    <footer class="footer" role="contentinfo">
+        <p>© 2025 Le Camarguais - Salon de thé à Port-Saint-Louis-du-Rhône | Images non contractuelles | Site informatif pour les prix - Aucune commande en ligne</p>
+        <p class="text-sm mt-2">Cuisine camarguaise traditionnelle et fast-food qualité restaurant</p>
     </footer>
 
     <script src="assets/js/script.js"></script>

@@ -19,6 +19,12 @@
 }
 
 /* ===== Reset et Base ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -29,6 +35,7 @@ body {
     color: var(--text-primary);
     transition: var(--transition);
     overscroll-behavior: none;
+    line-height: 1.6;
 }
 
 /* ===== Header ===== */
@@ -48,7 +55,7 @@ body {
     z-index: 1;
 }
 
-/* ===== Logo animé transparent ===== */
+/* ===== Logo optimisé SEO ===== */
 .header-logo {
     height: 6rem;
     width: auto;
@@ -98,19 +105,21 @@ body {
     }
 }
 
-/* ===== Typographie ===== */
+/* ===== Typographie optimisée ===== */
 h1 {
     font-family: 'Dancing Script', cursive;
     color: var(--gold-light);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     animation: pulse-text 2s ease-in-out infinite;
+    font-size: clamp(2rem, 5vw, 3rem);
 }
 
 .section-title {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 700;
     color: #2d3748;
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 [data-theme="dark"] .section-title {
@@ -129,8 +138,9 @@ h1 {
 }
 
 .promo-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #4b5563;
+    margin-bottom: 1.5rem;
 }
 
 [data-theme="dark"] .promo-text {
@@ -156,6 +166,8 @@ h1 {
     font-weight: 600;
     transition: var(--transition);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .btn-header:hover {
@@ -181,6 +193,30 @@ h1 {
     border-color: #FFFC00 !important;
 }
 
+/* ===== Bouton CTA ===== */
+.inline-btn {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.inline-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+}
+
+[data-theme="dark"] .inline-btn {
+    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+}
+
 /* ===== Sections ===== */
 .section-card {
     background: var(--bg-secondary);
@@ -188,6 +224,9 @@ h1 {
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
     overflow: hidden;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .section-card:hover {
@@ -195,13 +234,18 @@ h1 {
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
 }
 
+.promo-content {
+    padding: 1rem 0;
+}
+
 /* ===== Footer ===== */
 .footer {
     background: #e5e7eb;
     text-align: center;
-    padding: 1rem;
+    padding: 1.5rem;
     font-size: 0.875rem;
     color: #000000;
+    margin-top: auto;
 }
 
 [data-theme="dark"] .footer {
@@ -229,13 +273,54 @@ h1 {
 }
 
 /* ===== Accessibilité ===== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 button:focus-visible,
 a:focus-visible {
     outline: 2px solid var(--gold);
     outline-offset: 2px;
 }
 
-/* ===== Responsive ===== */
+/* Amélioration du contraste pour accessibilité */
+@media (prefers-contrast: high) {
+    :root {
+        --bg-primary: #ffffff;
+        --text-primary: #000000;
+    }
+    
+    .btn-header {
+        border-width: 3px;
+    }
+}
+
+/* Réduction des animations pour les préférences utilisateur */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .header-logo {
+        animation: none;
+    }
+    
+    h1 {
+        animation: none;
+    }
+}
+
+/* ===== Responsive Design ===== */
 @media (max-width: 640px) {
     h1 {
         font-size: 1.8rem;
@@ -246,11 +331,12 @@ a:focus-visible {
     }
 
     .section-card {
-        padding: 1rem;
+        padding: 1.5rem;
+        margin: 1rem;
     }
 
     .section-title {
-        font-size: 1.25rem;
+        font-size: 1.375rem;
     }
 
     .promo-date {
@@ -258,18 +344,54 @@ a:focus-visible {
     }
 
     .promo-text {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .btn-header {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 2.75rem;
+        height: 2.75rem;
+    }
+    
+    .inline-btn {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.9rem;
+    }
+    
+    .footer {
+        padding: 1rem;
     }
 }
 
 @media (min-width: 641px) and (max-width: 768px) {
     .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    
+    .section-card {
+        padding: 2rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .section-card {
+        padding: 2.5rem;
+    }
+}
+
+/* Impression */
+@media print {
+    .btn-header,
+    .inline-btn {
+        display: none !important;
+    }
+    
+    .section-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .header-bg {
+        background: #333 !important;
     }
 }

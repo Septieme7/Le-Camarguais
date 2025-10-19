@@ -1,97 +1,185 @@
 /* ==========================================================
     Fond animé doux et fluide - bgcanvas.js
+    Optimisé pour le SEO et les performances
    ========================================================== */
 
-const canvas = document.getElementById("bgcanvas");
-const ctx = canvas.getContext("2d");
+class BackgroundAnimation {
+    constructor() {
+        this.canvas = document.getElementById("bgcanvas");
+        if (!this.canvas) return;
+        
+        this.ctx = this.canvas.getContext("2d");
+        this.logos = [];
+        this.isLoaded = false;
+        
+        this.init();
+    }
 
-let width, height;
-function resizeCanvas() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-}
-window.addEventListener("resize", resizeCanvas);
-resizeCanvas();
+    init() {
+        this.resizeCanvas();
+        this.setupEventListeners();
+        this.loadImage();
+    }
 
-// Image utilisée
-const logo = new Image();
-logo.src = "assets/images/logo.png";
+    resizeCanvas() {
+        this.width = this.canvas.width = window.innerWidth;
+        this.height = this.canvas.height = window.innerHeight;
+    }
 
-// Configuration
-const NUM_LOGOS = 15; // 🟢 plus de logos identiques
-const logos = [];
-const MIN_SIZE = 5;
-const MAX_SIZE = 250;
+    setupEventListeners() {
+        // Resize optimisé avec debounce
+        let resizeTimeout;
+        window.addEventListener("resize", () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                this.resizeCanvas();
+                this.repositionLogos();
+            }, 250);
+        });
 
-// Création des objets logos
-function createLogos() {
-    for (let i = 0; i < NUM_LOGOS; i++) {
-        const size = Math.random() * (MAX_SIZE + MIN_SIZE) + MIN_SIZE;
-        logos.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        size,
-        baseSize: size,
-        vx: (Math.random() - 0.5) * 0.3, // vitesse douce
-        vy: (Math.random() - 0.5) * 0.3,
-        opacity: Math.random() * 0.2 + 0.05, // opacité légère
-        pulse: Math.random() * Math.PI * 2, // phase aléatoire
+        // Pause l'animation quand la page n'est pas visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.stopAnimation();
+            } else {
+                this.startAnimation();
+            }
         });
     }
-}
 
-// Rebond sur les bords
-function bounce(l) {
-    if (l.x < 0 || l.x + l.size > width) l.vx *= -1;
-    if (l.y < 0 || l.y + l.size > height) l.vy *= -1;
-}
+    loadImage() {
+        this.logo = new Image();
+        
+        // Optimisation du chargement d'image
+        this.logo.loading = 'lazy';
+        this.logo.decoding = 'async';
+        
+        this.logo.onload = () => {
+            this.isLoaded = true;
+            this.createLogos();
+            this.startAnimation();
+        };
+        
+        this.logo.onerror = () => {
+            console.warn('Logo de fond non chargé, utilisation de fallback');
+            this.useFallbackAnimation();
+        };
+        
+        this.logo.src = "assets/images/logo.png";
+    }
 
-// Détection simple des collisions (rebond doux)
-function detectCollisions() {
-    for (let i = 0; i < logos.length; i++) {
-        for (let j = i + 1; j < logos.length; j++) {
-        const a = logos[i];
-        const b = logos[j];
-        const dx = a.x - b.x;
-        const dy = a.y - b.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < (a.size + b.size) / 2) {
-            // inversion douce des vitesses
-            a.vx *= -1;
-            a.vy *= -1;
-            b.vx *= -1;
-            b.vy *= -1;
+    createLogos() {
+        const NUM_LOGOS = 15;
+        const MIN_SIZE = 5;
+        const MAX_SIZE = 250;
+
+        for (let i = 0; i < NUM_LOGOS; i++) {
+            const size = Math.random() * (MAX_SIZE - MIN_SIZE) + MIN_SIZE;
+            this.logos.push({
+                x: Math.random() * this.width,
+                y: Math.random() * this.height,
+                size,
+                baseSize: size,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
+                opacity: Math.random() * 0.2 + 0.05,
+                pulse: Math.random() * Math.PI * 2,
+            });
         }
+    }
+
+    repositionLogos() {
+        this.logos.forEach(logo => {
+            logo.x = Math.min(logo.x, this.width - logo.size);
+            logo.y = Math.min(logo.y, this.height - logo.size);
+        });
+    }
+
+    bounce(logo) {
+        if (logo.x < 0 || logo.x + logo.size > this.width) logo.vx *= -1;
+        if (logo.y < 0 || logo.y + logo.size > this.height) logo.vy *= -1;
+    }
+
+    detectCollisions() {
+        for (let i = 0; i < this.logos.length; i++) {
+            for (let j = i + 1; j < this.logos.length; j++) {
+                const a = this.logos[i];
+                const b = this.logos[j];
+                const dx = a.x - b.x;
+                const dy = a.y - b.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                if (dist < (a.size + b.size) / 2) {
+                    a.vx *= -1;
+                    a.vy *= -1;
+                    b.vx *= -1;
+                    b.vy *= -1;
+                }
+            }
         }
+    }
+
+    animate() {
+        if (!this.isLoaded || document.hidden) return;
+
+        this.ctx.clearRect(0, 0, this.width, this.height);
+
+        this.logos.forEach(logo => {
+            // Déplacement
+            logo.x += logo.vx;
+            logo.y += logo.vy;
+            this.bounce(logo);
+
+            // Effet de respiration douce
+            logo.pulse += 0.005;
+            const scale = 1 + Math.sin(logo.pulse) * 0.1;
+            const size = logo.baseSize * scale;
+            const alpha = logo.opacity + Math.sin(logo.pulse) * 0.05;
+
+            // Dessin avec optimisation
+            this.ctx.globalAlpha = Math.max(0.02, Math.min(0.25, alpha));
+            this.ctx.drawImage(this.logo, logo.x, logo.y, size, size);
+        });
+
+        this.detectCollisions();
+        this.animationFrame = requestAnimationFrame(() => this.animate());
+    }
+
+    startAnimation() {
+        if (!this.animationFrame && this.isLoaded) {
+            this.animate();
+        }
+    }
+
+    stopAnimation() {
+        if (this.animationFrame) {
+            cancelAnimationFrame(this.animationFrame);
+            this.animationFrame = null;
+        }
+    }
+
+    useFallbackAnimation() {
+        // Fallback simple si l'image ne charge pas
+        console.log('Animation de fallback activée');
+        this.isLoaded = true;
+        this.createLogos();
+        this.startAnimation();
+    }
+
+    // Nettoyage mémoire
+    destroy() {
+        this.stopAnimation();
+        window.removeEventListener("resize", this.resizeCanvas);
     }
 }
 
-// Animation principale
-function animate() {
-    ctx.clearRect(0, 0, width, height);
+// Initialisation différée pour le SEO
+document.addEventListener('DOMContentLoaded', () => {
+    // Délai pour prioriser le contenu principal
+    setTimeout(() => {
+        new BackgroundAnimation();
+    }, 1000);
+});
 
-    logos.forEach((l) => {
-        // Déplacement
-        l.x += l.vx;
-        l.y += l.vy;
-        bounce(l);
-
-        // Effet de respiration douce
-        l.pulse += 0.005;
-        const scale = 1 + Math.sin(l.pulse) * 0.1;
-        const size = l.baseSize * scale;
-        const alpha = l.opacity + Math.sin(l.pulse) * 0.05;
-
-        // Dessin
-        ctx.globalAlpha = alpha;
-        ctx.drawImage(logo, l.x, l.y, size, size);
-    });
-
-    detectCollisions();
-    requestAnimationFrame(animate);
-}
-
-logo.onload = () => {
-    createLogos();
-    animate();
-};
+// Export pour utilisation externe si nécessaire
+window.BackgroundAnimation = BackgroundAnimation;
