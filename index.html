@@ -15,291 +15,451 @@
     <link rel="stylesheet" href="assets/css/bgcanvas.css">
 </head>
 
-<canvas id="bgcanvas"></canvas>
-
 <body class="min-h-screen flex flex-col" data-theme="light">
+    <canvas id="bgcanvas"></canvas>
+
     <header class="header-bg text-white text-center py-6 px-4">
-        <div class="flex items-center justify-center gap-2 flex-col sm:flex-row">
+        <div class="header-overlay"></div>
+        <div class="flex items-center justify-center gap-2 flex-col sm:flex-row relative z-10">
             <img src="assets/images/logo.png" alt="Logo du Restaurant" class="header-logo">
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4 animate-pulse-text">Le Camarguais</h1>
         </div>
-        <div class="flex flex-wrap justify-center gap-2">
-            <button id="themeToggleBtn" class="btn bg text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium"><span class="icon-theme"></span></button>
-            <button id="fullscreenBtn" class="btn bg text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium"><span class="icon-fullscreen"></span></button>
-            <button id="muteBtn" class="btn bg text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium"><span class="icon-sound"></span></button>
-            <a href="tel:+33426484756" class="btn btn-phone bg text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Appeler le restaurant"><i class="fas fa-phone"></i></a>
-            <a href="https://wa.me/33426484756" class="btn btn-whatsapp bg-whatsapp-green text-white w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Contacter via WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.snapchat.com/add/restosnap" class="btn btn-snapchat bg-snapchat-yellow text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Suivre sur Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
-            <a href="assets/html/promotionNON.html" class="btn bg text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Voir les promotions">Promo<i class=""></i></a>
-            <button id="qrBtn" class="btn bg text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Voir le QR Code"><i class="fas fa-qrcode"></i></button>
+        <div class="flex flex-wrap justify-center gap-2 relative z-10">
+            <button id="themeToggleBtn" class="btn-header" aria-label="Changer le thème"><span class="icon-theme"></span></button>
+            <button id="fullscreenBtn" class="btn-header" aria-label="Mode plein écran"><span class="icon-fullscreen"></span></button>
+            <a href="tel:+33426484756" class="btn-header btn-phone" aria-label="Appeler le restaurant"><i class="fas fa-phone"></i></a>
+            <a href="https://wa.me/33426484756" class="btn-header btn-whatsapp" aria-label="Contacter via WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.snapchat.com/add/camarguais13230" class="btn-header btn-snapchat" aria-label="Suivre sur Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+            <a href="assets/html/promotionNON.html" class="btn-header" aria-label="Voir les promotions">Promo</a>
+            <button id="qrBtn" class="btn-header" aria-label="Voir le QR Code"><i class="fas fa-qrcode"></i></button>
         </div>
     </header>
 
-    <audio id="bgAudio" autoplay loop>
-        <source src="assets/audio/background.mp3" type="audio/mpeg">
-        Votre navigateur ne supporte pas l'audio.
-    </audio>
-
     <main class="flex-grow container mx-auto px-4 py-6">
+        <!-- Section Boissons -->
+        <section id="boissons" class="section-card p-4 sm:p-6 mb-8">
+            <h2 class="section-title">Boissons</h2>
+            <div class="image-container mx-auto mb-4">
+                <img src="assets/images/boissons.png" alt="Boissons" class="menu-img" data-src="assets/images/boissons.png" data-alt="Boissons">
+            </div>
+            <ul class="menu-list boissons-grid">
+                <li class="menu-item">
+                    <strong>Canette 33cl</strong> : 1.50€<br>Rafraîchissement en canette de 33cl.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="canette-33cl" aria-label="Diminuer quantité">-</button>
+                        <span id="canette-33cl-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="canette-33cl" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Canette 33cl" data-price="1.50" data-id="canette-33cl">Ajouter</button>
+                    </div>
+                </li>
+                <li class="menu-item">
+                    <strong>Redbull 25cl</strong> : 2€<br>Boisson énergisante Redbull en canette de 25cl.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="redbull-25cl" aria-label="Diminuer quantité">-</button>
+                        <span id="redbull-25cl-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="redbull-25cl" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Redbull 25cl" data-price="2" data-id="redbull-25cl">Ajouter</button>
+                    </div>
+                </li>
+                <li class="menu-item">
+                    <strong>Limonade Artisanale 42cl</strong> : 2€<br>Limonade artisanale rafraîchissante en bouteille de 42cl.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="limonade-artisanale" aria-label="Diminuer quantité">-</button>
+                        <span id="limonade-artisanale-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="limonade-artisanale" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Limonade Artisanale 42cl" data-price="2" data-id="limonade-artisanale">Ajouter</button>
+                    </div>
+                </li>
+                <li class="menu-item">
+                    <strong>Perrier petite bouteille verre</strong> : 2€<br>Eau pétillante Perrier en bouteille verre.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="perrier-verre" aria-label="Diminuer quantité">-</button>
+                        <span id="perrier-verre-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="perrier-verre" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Perrier verre" data-price="2" data-id="perrier-verre">Ajouter</button>
+                    </div>
+                </li>
+                <li class="menu-item">
+                    <strong>Orangina verre 33cl</strong> : 2€<br>Boisson gazeuse aux agrumes en bouteille verre de 33cl.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="orangina-verre" aria-label="Diminuer quantité">-</button>
+                        <span id="orangina-verre-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="orangina-verre" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Orangina verre 33cl" data-price="2" data-id="orangina-verre">Ajouter</button>
+                    </div>
+                </li>
+                <li class="menu-item">
+                    <strong>Bouteille Crystalin fraise 50cl</strong> : 2€<br>Boisson Crystalin saveur fraise en bouteille de 50cl.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="crystalin-fraise" aria-label="Diminuer quantité">-</button>
+                        <span id="crystalin-fraise-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="crystalin-fraise" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Crystalin fraise 50cl" data-price="2" data-id="crystalin-fraise">Ajouter</button>
+                    </div>
+                </li>
+                <li class="menu-item">
+                    <strong>Bouteille Crystalin</strong> : 1€<br>Boisson Crystalin nature en bouteille.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="crystalin-nature" aria-label="Diminuer quantité">-</button>
+                        <span id="crystalin-nature-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="crystalin-nature" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Crystalin nature" data-price="1" data-id="crystalin-nature">Ajouter</button>
+                    </div>
+                </li>
+                <li class="menu-item">
+                    <strong>Capri-Sun</strong> : 1€<br>Boisson fruitée Capri-Sun en sachet.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="capri-sun" aria-label="Diminuer quantité">-</button>
+                        <span id="capri-sun-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="capri-sun" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Capri-Sun" data-price="1" data-id="capri-sun">Ajouter</button>
+                    </div>
+                </li>
+                <li class="menu-item">
+                    <strong>Sirop</strong> : 2€<br>Sirop à diluer au choix.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="sirop" aria-label="Diminuer quantité">-</button>
+                        <span id="sirop-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="sirop" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Sirop" data-price="2" data-id="sirop">Ajouter</button>
+                    </div>
+                </li>
+                <li class="menu-item">
+                    <strong>PAGO</strong> : 2€<br>Jus de fruits PAGO.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="pago" aria-label="Diminuer quantité">-</button>
+                        <span id="pago-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="pago" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="PAGO" data-price="2" data-id="pago">Ajouter</button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Section Plats de la Semaine -->
+        <section id="plats-semaine" class="section-card p-4 sm:p-6 mb-8">
+            <h2 class="section-title">Plats de la Semaine "En barquette"</h2>
+            <div class="image-container mx-auto mb-4">
+                <img src="assets/images/plats-semaine.jpg" alt="Plats de la semaine" class="menu-img" data-src="assets/images/plats-semaine.jpg" data-alt="Plats de la semaine">
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <strong>Couscous "selon humeur"</strong> : 10€<br>Couscous traditionnel préparé selon l'humeur du chef, avec semoule, légumes et viandes.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="couscous" aria-label="Diminuer quantité">-</button>
+                        <span id="couscous-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="couscous" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Couscous selon humeur" data-price="10" data-id="couscous">Ajouter</button>
+                    </div>
+                </li>
+                <li class="menu-item">
+                    <strong>Paella "selon humeur"</strong> : 10€<br>Paella espagnole préparée selon l'inspiration du chef, avec riz, fruits de mer et légumes.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="paella" aria-label="Diminuer quantité">-</button>
+                        <span id="paella-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="paella" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Paella selon humeur" data-price="10" data-id="paella">Ajouter</button>
+                    </div>
+                </li>
+                <li class="menu-item">
+                    <strong>Daube "selon Humeur"</strong> : 10€<br>Daube provençale mijotée selon l'humeur du chef, viande tendre et sauce riche.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="daube" aria-label="Diminuer quantité">-</button>
+                        <span id="daube-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="daube" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Daube selon humeur" data-price="10" data-id="daube">Ajouter</button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Section Sandwiches -->
         <section id="sandwiches" class="section-card p-4 sm:p-6 mb-8">
-            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Sandwiches "Demie-baguette"</h2>
-            <img src="assets/images/Jambon-Beurre.jpg" alt="Sandwich Jambon Emmental Beurre" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
-            <ul class="space-y-4">
-                <li>
-                    <strong>Jambon emmental beurre</strong> : 4.50€<br>Un classique français avec jambon de qualité, emmental fondant et beurre frais sur une demie-baguette croustillante.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('jambon-emmental-beurre')">-</button>
-                        <span id="jambon-emmental-beurre-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('jambon-emmental-beurre')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Jambon emmental beurre" data-price="4.50">Ajouter</button>
+            <h2 class="section-title">Sandwiches "Demie-baguette"</h2>
+            <div class="image-container mx-auto mb-4">
+                <img src="assets/images/Jambon-Beurre.jpg" alt="Sandwich Jambon Emmental Beurre" class="menu-img" data-src="assets/images/Jambon-Beurre.jpg" data-alt="Sandwich Jambon Emmental Beurre">
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <strong>Jambon emmental beurre</strong> : 4.50€<br>Un classique français avec jambon de qualité, emmental fondant et beurre frais sur une demie-baguette croustillante.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="jambon-emmental-beurre" aria-label="Diminuer quantité">-</button>
+                        <span id="jambon-emmental-beurre-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="jambon-emmental-beurre" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Jambon emmental beurre" data-price="4.50" data-id="jambon-emmental-beurre">Ajouter</button>
                     </div>
                 </li>
-                <li>
-                    <strong>Saucisson beurre</strong> : 4.50€<br>Saucisson sec tranché finement avec du beurre doux pour une saveur rustique.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('saucisson-beurre')">-</button>
-                        <span id="saucisson-beurre-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('saucisson-beurre')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Saucisson beurre" data-price="4.50">Ajouter</button>
+                <li class="menu-item">
+                    <strong>Saucisson beurre</strong> : 4.50€<br>Saucisson sec tranché finement avec du beurre doux pour une saveur rustique.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="saucisson-beurre" aria-label="Diminuer quantité">-</button>
+                        <span id="saucisson-beurre-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="saucisson-beurre" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Saucisson beurre" data-price="4.50" data-id="saucisson-beurre">Ajouter</button>
                     </div>
                 </li>
-                <li>
-                    <strong>Halal jambon emmental</strong> : 4.50€<br>Jambon halal tendre et emmental, option halal pleine de goût.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('halal-jambon-emmental')">-</button>
-                        <span id="halal-jambon-emmental-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('halal-jambon-emmental')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Halal jambon emmental" data-price="4.50">Ajouter</button>
+                <li class="menu-item">
+                    <strong>Halal jambon emmental</strong> : 4.50€<br>Jambon halal tendre et emmental, option halal pleine de goût.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="halal-jambon-emmental" aria-label="Diminuer quantité">-</button>
+                        <span id="halal-jambon-emmental-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="halal-jambon-emmental" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Halal jambon emmental" data-price="4.50" data-id="halal-jambon-emmental">Ajouter</button>
                     </div>
                 </li>
             </ul>
         </section>
 
+        <!-- Section Burrata -->
         <section id="burrata" class="section-card p-4 sm:p-6 mb-8">
-            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Burrata</h2>
-            <img src="assets/images/Burrata.jpg" alt="Burrata Mortadella Emmental" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
-            <ul class="space-y-4">
-                <li>
-                    <strong>Burrata mortadella emmental</strong> : 5€<br>Explosion de saveurs italiennes avec burrata crémeuse, mortadella et emmental.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('burrata-mortadella-emmental')">-</button>
-                        <span id="burrata-mortadella-emmental-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('burrata-mortadella-emmental')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Burrata mortadella emmental" data-price="5">Ajouter</button>
+            <h2 class="section-title">Burrata</h2>
+            <div class="image-container mx-auto mb-4">
+                <img src="assets/images/Burrata.jpg" alt="Burrata Mortadella Emmental" class="menu-img" data-src="assets/images/Burrata.jpg" data-alt="Burrata Mortadella Emmental">
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <strong>Burrata mortadella emmental</strong> : 5€<br>Explosion de saveurs italiennes avec burrata crémeuse, mortadella et emmental.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="burrata-mortadella-emmental" aria-label="Diminuer quantité">-</button>
+                        <span id="burrata-mortadella-emmental-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="burrata-mortadella-emmental" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Burrata mortadella emmental" data-price="5" data-id="burrata-mortadella-emmental">Ajouter</button>
                     </div>
                 </li>
             </ul>
         </section>
 
+        <!-- Section Croque Monsieur -->
         <section id="croque" class="section-card p-4 sm:p-6 mb-8">
-            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Croque Monsieur</h2>
-            <img src="assets/images/Croque-Monsieur.webp" alt="Croque Monsieur Nature" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
-            <ul class="space-y-4">
-                <li>
-                    <strong>Croque Monsieur nature</strong> : 4.50€<br>Grillé à la perfection avec jambon, fromage et béchamel.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('croque-monsieur-nature')">-</button>
-                        <span id="croque-monsieur-nature-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('croque-monsieur-nature')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Croque Monsieur nature" data-price="4.50">Ajouter</button>
+            <h2 class="section-title">Croque Monsieur</h2>
+            <div class="image-container mx-auto mb-4">
+                <img src="assets/images/Croque-Monsieur.webp" alt="Croque Monsieur Nature" class="menu-img" data-src="assets/images/Croque-Monsieur.webp" data-alt="Croque Monsieur Nature">
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <strong>Croque Monsieur nature</strong> : 4.50€<br>Grillé à la perfection avec jambon, fromage et béchamel.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="croque-monsieur-nature" aria-label="Diminuer quantité">-</button>
+                        <span id="croque-monsieur-nature-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="croque-monsieur-nature" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Croque Monsieur nature" data-price="4.50" data-id="croque-monsieur-nature">Ajouter</button>
                     </div>
                 </li>
             </ul>
         </section>
 
+        <!-- Section Paninis -->
         <section id="paninis" class="section-card p-4 sm:p-6 mb-8">
-            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Panini (5€)</h2>
-            <img src="assets/images/Panini.jpg" alt="Panini Saumon Boursin" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
-            <ul class="space-y-4">
-                <li>
-                    <strong>Saumon boursin</strong><br>Saumon fumé et boursin crémeux, grillé à souhait.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('saumon-boursin')">-</button>
-                        <span id="saumon-boursin-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('saumon-boursin')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Saumon boursin" data-price="5">Ajouter</button>
+            <h2 class="section-title">Panini (5€)</h2>
+            <div class="image-container mx-auto mb-4">
+                <img src="assets/images/Panini.jpg" alt="Panini Saumon Boursin" class="menu-img" data-src="assets/images/Panini.jpg" data-alt="Panini Saumon Boursin">
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <strong>Saumon boursin</strong><br>Saumon fumé et boursin crémeux, grillé à souhait.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="saumon-boursin" aria-label="Diminuer quantité">-</button>
+                        <span id="saumon-boursin-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="saumon-boursin" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Saumon boursin" data-price="5" data-id="saumon-boursin">Ajouter</button>
                     </div>
                 </li>
-                <li>
-                    <strong>Poulet boursin</strong><br>Poulet rôti juteux avec boursin onctueux.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('poulet-boursin')">-</button>
-                        <span id="poulet-boursin-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('poulet-boursin')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Poulet boursin" data-price="5">Ajouter</button>
+                <li class="menu-item">
+                    <strong>Poulet boursin</strong><br>Poulet rôti juteux avec boursin onctueux.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="poulet-boursin" aria-label="Diminuer quantité">-</button>
+                        <span id="poulet-boursin-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="poulet-boursin" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Poulet boursin" data-price="5" data-id="poulet-boursin">Ajouter</button>
                     </div>
                 </li>
-                <li>
-                    <strong>Jambon cru chèvre</strong><br>Jambon cru salé et chèvre frais, saveur méditerranéenne.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('jambon-cru-chevre')">-</button>
-                        <span id="jambon-cru-chevre-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('jambon-cru-chevre')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Jambon cru chèvre" data-price="5">Ajouter</button>
+                <li class="menu-item">
+                    <strong>Jambon cru chèvre</strong><br>Jambon cru salé et chèvre frais, saveur méditerranéenne.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="jambon-cru-chevre" aria-label="Diminuer quantité">-</button>
+                        <span id="jambon-cru-chevre-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="jambon-cru-chevre" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Jambon cru chèvre" data-price="5" data-id="jambon-cru-chevre">Ajouter</button>
                     </div>
                 </li>
-                <li>
-                    <strong>3 fromages</strong><br>Trio de fromages fondus pour les amateurs.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('3-fromages')">-</button>
-                        <span id="3-fromages-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('3-fromages')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="3 fromages" data-price="5">Ajouter</button>
+                <li class="menu-item">
+                    <strong>3 fromages</strong><br>Trio de fromages fondus pour les amateurs.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="3-fromages" aria-label="Diminuer quantité">-</button>
+                        <span id="3-fromages-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="3-fromages" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="3 fromages" data-price="5" data-id="3-fromages">Ajouter</button>
                     </div>
                 </li>
-                <li>
-                    <strong>Jambon emmental</strong><br>Jambon et emmental coulant, réconfortant.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('jambon-emmental')">-</button>
-                        <span id="jambon-emmental-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('jambon-emmental')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Jambon emmental" data-price="5">Ajouter</button>
+                <li class="menu-item">
+                    <strong>Jambon emmental</strong><br>Jambon et emmental coulant, réconfortant.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="jambon-emmental" aria-label="Diminuer quantité">-</button>
+                        <span id="jambon-emmental-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="jambon-emmental" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Jambon emmental" data-price="5" data-id="jambon-emmental">Ajouter</button>
                     </div>
                 </li>
-                <li>
-                    <strong>Chorizo tomate mozzarella</strong><br>Chorizo épicé, tomates et mozzarella filante.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('chorizo-tomate-mozzarella')">-</button>
-                        <span id="chorizo-tomate-mozzarella-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('chorizo-tomate-mozzarella')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Chorizo tomate mozzarella" data-price="5">Ajouter</button>
+                <li class="menu-item">
+                    <strong>Chorizo tomate mozzarella</strong><br>Chorizo épicé, tomates et mozzarella filante.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="chorizo-tomate-mozzarella" aria-label="Diminuer quantité">-</button>
+                        <span id="chorizo-tomate-mozzarella-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="chorizo-tomate-mozzarella" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Chorizo tomate mozzarella" data-price="5" data-id="chorizo-tomate-mozzarella">Ajouter</button>
                     </div>
                 </li>
-                <li>
-                    <strong>Reblochon</strong><br>Reblochon fondant, style montagnard.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('reblochon')">-</button>
-                        <span id="reblochon-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('reblochon')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Reblochon" data-price="5">Ajouter</button>
+                <li class="menu-item">
+                    <strong>Reblochon</strong><br>Reblochon fondant, style montagnard.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="reblochon" aria-label="Diminuer quantité">-</button>
+                        <span id="reblochon-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="reblochon" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Reblochon" data-price="5" data-id="reblochon">Ajouter</button>
                     </div>
                 </li>
-                <li>
-                    <strong>Reblochon lardons</strong><br>Reblochon avec lardons croustillants.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('reblochon-lardons')">-</button>
-                        <span id="reblochon-lardons-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('reblochon-lardons')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Reblochon lardons" data-price="5">Ajouter</button>
+                <li class="menu-item">
+                    <strong>Reblochon lardons</strong><br>Reblochon avec lardons croustillants.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="reblochon-lardons" aria-label="Diminuer quantité">-</button>
+                        <span id="reblochon-lardons-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="reblochon-lardons" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Reblochon lardons" data-price="5" data-id="reblochon-lardons">Ajouter</button>
                     </div>
                 </li>
             </ul>
         </section>
 
+        <!-- Section Bruschetta -->
         <section id="bruschetta" class="section-card p-4 sm:p-6 mb-8">
-            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Bruschetta</h2>
-            <img src="assets/images/Bruschetta1.jpg" alt="Bruschetta Base Crème ou Tomate" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
-            <ul class="space-y-4">
-                <li>
-                    <strong>Base crème ou tomate</strong> : 6€ / 9€<br>Pain grillé garni de crème onctueuse ou tomate fraîche.<br>
-                    <div class="flex flex-col space-y-2 mt-1">
-                        <div class="flex items-center flex-wrap">
-                            <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('base-creme')">-</button>
-                            <span id="base-creme-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                            <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('base-creme')">+</button>
-                            <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Base crème" data-price="6">Ajouter (crème)</button>
+            <h2 class="section-title">Bruschetta</h2>
+            <div class="image-container mx-auto mb-4">
+                <img src="assets/images/Bruschetta1.jpg" alt="Bruschetta Base Crème ou Tomate" class="menu-img" data-src="assets/images/Bruschetta1.jpg" data-alt="Bruschetta Base Crème ou Tomate">
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <strong>Base crème ou tomate</strong> : 6€ / 9€<br>Pain grillé garni de crème onctueuse ou tomate fraîche.
+                    <div class="quantity-controls-group">
+                        <div class="quantity-controls">
+                            <button class="quantity-btn decrease" data-id="base-creme" aria-label="Diminuer quantité">-</button>
+                            <span id="base-creme-quantity" class="quantity-display">1</span>
+                            <button class="quantity-btn increase" data-id="base-creme" aria-label="Augmenter quantité">+</button>
+                            <button class="add-to-cart" data-name="Base crème" data-price="6" data-id="base-creme">Ajouter (crème)</button>
                         </div>
-                        <div class="flex items-center flex-wrap">
-                            <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('base-tomate')">-</button>
-                            <span id="base-tomate-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                            <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('base-tomate')">+</button>
-                            <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Base tomate" data-price="9">Ajouter (tomate)</button>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn decrease" data-id="base-tomate" aria-label="Diminuer quantité">-</button>
+                            <span id="base-tomate-quantity" class="quantity-display">1</span>
+                            <button class="quantity-btn increase" data-id="base-tomate" aria-label="Augmenter quantité">+</button>
+                            <button class="add-to-cart" data-name="Base tomate" data-price="9" data-id="base-tomate">Ajouter (tomate)</button>
                         </div>
                     </div>
                 </li>
             </ul>
         </section>
 
+        <!-- Section Burgers -->
         <section id="burgers" class="section-card p-4 sm:p-6 mb-8">
-            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Burgers</h2>
-            <img src="assets/images/Hamburger1.jpg" alt="Burger Simple" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
-            <ul class="space-y-4">
-                <li>
-                    <strong>Burger simple</strong> : 6€<br>Viande juteuse, fromage fondant et légumes frais.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('burger-simple')">-</button>
-                        <span id="burger-simple-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('burger-simple')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Burger simple" data-price="6">Ajouter</button>
+            <h2 class="section-title">Burgers</h2>
+            <div class="image-container mx-auto mb-4">
+                <img src="assets/images/Hamburger1.jpg" alt="Burger Simple" class="menu-img" data-src="assets/images/Hamburger1.jpg" data-alt="Burger Simple">
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <strong>Burger simple</strong> : 6€<br>Viande juteuse, fromage fondant et légumes frais.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="burger-simple" aria-label="Diminuer quantité">-</button>
+                        <span id="burger-simple-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="burger-simple" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Burger simple" data-price="6" data-id="burger-simple">Ajouter</button>
                     </div>
                 </li>
-                <li>
-                    <strong>Burger double</strong> : 8€<br>Double steak pour plus de gourmandise.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('burger-double')">-</button>
-                        <span id="burger-double-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('burger-double')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Burger double" data-price="8">Ajouter</button>
+                <li class="menu-item">
+                    <strong>Burger double</strong> : 8€<br>Double steak pour plus de gourmandise.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="burger-double" aria-label="Diminuer quantité">-</button>
+                        <span id="burger-double-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="burger-double" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Burger double" data-price="8" data-id="burger-double">Ajouter</button>
                     </div>
                 </li>
             </ul>
         </section>
 
+        <!-- Section Autres -->
         <section id="autres" class="section-card p-4 sm:p-6 mb-8">
-            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Autres</h2>
-            <img src="assets/images/HotDog1.jpg" alt="Hot Dog" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
-            <ul class="space-y-4">
-                <li>
-                    <strong>Portion pizza</strong> : 2€<br>Part croustillante avec sauce tomate et toppings.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('portion-pizza')">-</button>
-                        <span id="portion-pizza-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('portion-pizza')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Portion pizza" data-price="2">Ajouter</button>
+            <h2 class="section-title">Autres</h2>
+            <div class="image-container mx-auto mb-4">
+                <img src="assets/images/HotDog1.jpg" alt="Hot Dog" class="menu-img" data-src="assets/images/HotDog1.jpg" data-alt="Hot Dog">
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <strong>Portion pizza</strong> : 2€<br>Part croustillante avec sauce tomate et toppings.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="portion-pizza" aria-label="Diminuer quantité">-</button>
+                        <span id="portion-pizza-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="portion-pizza" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Portion pizza" data-price="2" data-id="portion-pizza">Ajouter</button>
                     </div>
                 </li>
-                <li>
-                    <strong>Hot dog viande hachée</strong> : 7€<br>Viande hachée épicée avec oignons et sauces.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('hot-dog-viande-hachee')">-</button>
-                        <span id="hot-dog-viande-hachee-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('hot-dog-viande-hachee')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Hot dog viande hachée" data-price="7">Ajouter</button>
+                <li class="menu-item">
+                    <strong>Hot dog viande hachée</strong> : 7€<br>Viande hachée épicée avec oignons et sauces.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="hot-dog-viande-hachee" aria-label="Diminuer quantité">-</button>
+                        <span id="hot-dog-viande-hachee-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="hot-dog-viande-hachee" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Hot dog viande hachée" data-price="7" data-id="hot-dog-viande-hachee">Ajouter</button>
                     </div>
                 </li>
-                <li>
-                    <strong>Hot dog saucisse</strong> : 7€<br>Saucisse grillée avec condiments.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('hot-dog-saucisse')">-</button>
-                        <span id="hot-dog-saucisse-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('hot-dog-saucisse')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Hot dog saucisse" data-price="7">Ajouter</button>
+                <li class="menu-item">
+                    <strong>Hot dog saucisse</strong> : 7€<br>Saucisse grillée avec condiments.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="hot-dog-saucisse" aria-label="Diminuer quantité">-</button>
+                        <span id="hot-dog-saucisse-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="hot-dog-saucisse" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Hot dog saucisse" data-price="7" data-id="hot-dog-saucisse">Ajouter</button>
                     </div>
                 </li>
             </ul>
         </section>
 
+        <!-- Section Desserts -->
         <section id="desserts" class="section-card p-4 sm:p-6 mb-8">
-            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Desserts</h2>
-            <img src="assets/images/Tiramisu-Speculoos.jpg" alt="Tiramisu Speculoos" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
-            <ul class="space-y-4">
-                <li>
-                    <strong>Tiramisu speculoos</strong> : 4€<br>Revisité avec biscuits speculoos et mascarpone.<br>
-                    <div class="flex items-center mt-1 flex-wrap">
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('tiramisu-speculoos')">-</button>
-                        <span id="tiramisu-speculoos-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                        <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('tiramisu-speculoos')">+</button>
-                        <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Tiramisu speculoos" data-price="4">Ajouter</button>
+            <h2 class="section-title">Desserts</h2>
+            <div class="image-container mx-auto mb-4">
+                <img src="assets/images/Tiramisu-Speculoos.jpg" alt="Tiramisu Speculoos" class="menu-img" data-src="assets/images/Tiramisu-Speculoos.jpg" data-alt="Tiramisu Speculoos">
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <strong>Tiramisu speculoos</strong> : 4€<br>Revisité avec biscuits speculoos et mascarpone.
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="tiramisu-speculoos" aria-label="Diminuer quantité">-</button>
+                        <span id="tiramisu-speculoos-quantity" class="quantity-display">1</span>
+                        <button class="quantity-btn increase" data-id="tiramisu-speculoos" aria-label="Augmenter quantité">+</button>
+                        <button class="add-to-cart" data-name="Tiramisu speculoos" data-price="4" data-id="tiramisu-speculoos">Ajouter</button>
                     </div>
                 </li>
             </ul>
-            <img src="assets/images/Tarte-Daim.webp" alt="Tarte Daim" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
-            <img src="assets/images/Tarte-Oreo.jpg" alt="Tarte Oreo" class="menu-img mx-auto mb-4 cursor-pointer" onclick="openModal(this.src, this.alt)">
-            <ul class="space-y-4">
-                <li>
-                    <strong>Tartes (Daim, Oreo)</strong> : 3€<br>Tartes maison au caramel croquant ou biscuit fondant.<br>
-                    <div class="flex flex-col space-y-2 mt-1">
-                        <div class="flex items-center flex-wrap">
-                            <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('tarte-daim')">-</button>
-                            <span id="tarte-daim-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                            <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('tarte-daim')">+</button>
-                            <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Tarte Daim" data-price="3">Ajouter (Daim)</button>
+            <div class="image-container mx-auto mb-4">
+                <img src="assets/images/Tarte-Daim.webp" alt="Tarte Daim" class="menu-img" data-src="assets/images/Tarte-Daim.webp" data-alt="Tarte Daim">
+            </div>
+            <div class="image-container mx-auto mb-4">
+                <img src="assets/images/Tarte-Oreo.jpg" alt="Tarte Oreo" class="menu-img" data-src="assets/images/Tarte-Oreo.jpg" data-alt="Tarte Oreo">
+            </div>
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <strong>Tartes (Daim, Oreo)</strong> : 3€<br>Tartes maison au caramel croquant ou biscuit fondant.
+                    <div class="quantity-controls-group">
+                        <div class="quantity-controls">
+                            <button class="quantity-btn decrease" data-id="tarte-daim" aria-label="Diminuer quantité">-</button>
+                            <span id="tarte-daim-quantity" class="quantity-display">1</span>
+                            <button class="quantity-btn increase" data-id="tarte-daim" aria-label="Augmenter quantité">+</button>
+                            <button class="add-to-cart" data-name="Tarte Daim" data-price="3" data-id="tarte-daim">Ajouter (Daim)</button>
                         </div>
-                        <div class="flex items-center flex-wrap">
-                            <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-l" onclick="decreaseQuantity('tarte-oreo')">-</button>
-                            <span id="tarte-oreo-quantity" class="px-3 py-1 bg-gray-100">1</span>
-                            <button class="quantity-btn bg-gray-300 text-black px-2 py-1 rounded-r" onclick="increaseQuantity('tarte-oreo')">+</button>
-                            <button class="add-to-cart bg-green-500 text-white px-3 py-1 rounded text-sm ml-2 mt-2 sm:mt-0" data-name="Tarte Oreo" data-price="3">Ajouter (Oreo)</button>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn decrease" data-id="tarte-oreo" aria-label="Diminuer quantité">-</button>
+                            <span id="tarte-oreo-quantity" class="quantity-display">1</span>
+                            <button class="quantity-btn increase" data-id="tarte-oreo" aria-label="Augmenter quantité">+</button>
+                            <button class="add-to-cart" data-name="Tarte Oreo" data-price="3" data-id="tarte-oreo">Ajouter (Oreo)</button>
                         </div>
                     </div>
                 </li>
@@ -307,34 +467,43 @@
         </section>
     </main>
 
-    <!-- Commande -->
-    <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-50">
-        <div class="relative bg-white rounded-lg p-4 sm:p-6 max-w-full sm:max-w-2xl w-full mx-2 sm:mx-4 max-h-[80vh] overflow-y-auto shadow-xl">
-            <button id="closeCart" class="absolute top-3 right-3 text-black text-2xl font-bold hover:text-gray-600 transition">&times;</button>
-            <h3 class="text-lg sm:text-xl font-bold mb-4 text-center text-gray-600">Votre Commande</h3>
-            <ul id="cartItems" class="space-y-4 mb-6"></ul>
-            <p id="cartTotal" class="text-base sm:text-lg font-semibold mb-4 text-center">Total: 0€</p>
-            <div class="flex flex-wrap justify-center gap-2">
-                <a href="tel:+33426484756" class="btn btn-phone bg text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Appeler le restaurant"><i class="fas fa-phone"></i></a>
-                <a href="https://wa.me/33426484756" class="btn btn-whatsapp bg-whatsapp-green text-white w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Contacter via WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.snapchat.com/add/restosnap" class="btn btn-snapchat bg-snapchat-yellow text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Suivre sur Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+    <!-- Bouton Voir Commande Flottant -->
+    <button id="openCartBtn" class="open-cart-btn" aria-label="Voir la commande">
+        <i class="fas fa-shopping-cart"></i> Voir Commande
+    </button>
+
+    <!-- Modal Commande -->
+    <div id="cartModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+        <div class="modal-content">
+            <button id="closeCart" class="modal-close" aria-label="Fermer la commande">&times;</button>
+            <h3 id="cartTitle" class="modal-title">Votre Commande</h3>
+            <div id="cartItemsContainer" class="modal-body">
+                <ul id="cartItems" class="cart-items"></ul>
+            </div>
+            <p id="cartTotal" class="cart-total">Total: 0€</p>
+            <div class="modal-actions">
+                <a href="tel:+33426484756" class="btn-header btn-phone" aria-label="Appeler le restaurant"><i class="fas fa-phone"></i></a>
+                <a href="https://wa.me/33426484756" class="btn-header btn-whatsapp" aria-label="Contacter via WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.snapchat.com/add/camarguais13230" class="btn-header btn-snapchat" aria-label="Suivre sur Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
             </div>
         </div>
     </div>
 
-    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-50">
-        <div class="relative bg-white rounded-lg p-2 sm:p-4 max-w-full sm:max-w-3xl w-full mx-2 sm:mx-4">
-            <button id="closeModal" class="absolute top-3 right-3 text-black text-2xl font-bold hover:text-gray-600 transition">&times;</button>
-            <img id="modalImage" src="" alt="" class="w-full h-auto max-h-[80vh] object-contain">
+    <!-- Modal Image -->
+    <div id="imageModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="imageModalLabel">
+        <div class="modal-content image-modal-content">
+            <button id="closeModal" class="modal-close" aria-label="Fermer l'image agrandie">&times;</button>
+            <img id="modalImage" src="" alt="" class="modal-image">
+            <p id="imageModalLabel" class="sr-only">Image agrandie</p>
         </div>
     </div>
 
     <!-- Flèche pour remonter -->
-    <button id="scrollTopBtn" class="fixed bottom-4 right-4 bg-gray-800 text-dark-gold w-12 h-12 flex items-center justify-center rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 opacity-0 invisible z-40">
-        <i class="fas fa-arrow-up text-lg"></i>
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Remonter en haut de la page">
+        <i class="fas fa-arrow-up"></i>
     </button>
 
-    <footer class="bg-gray-200 text-center py-4 text-sm text-black">
+    <footer class="footer">
         <p>© 2025 Le Camarguais - Images/Photos non contractuelles Attention "Site Web a titre d'info pour les prix AUCUNE commandes ne sera prises en comptes - Tous droits réservés</p>
     </footer>
 

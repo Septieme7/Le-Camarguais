@@ -41,9 +41,46 @@ Corriger le problem de "paddind" entre ajouter "de tiramisu speculos" et l'image
 *********************************************
 
 *********************************************
-prevoir de pouvoir faire descendre la liste de la commande 
+prevoir de pouvoir faire descendre la liste 
+de la commande 									OK FAIT
 avec une barre scroll..
 *********************************************
 
 *********************************************
-plus rajouter le noms des titres des articles dans le MODAL---> affichage du titre de l'article et aprés son nom "du sandicthes 
+plus rajouter le noms des titres des articles 
+dans le MODAL---> affichage du titre de l'article 
+et aprés son nom "du sandicthes 
+*********************************************
+
+*********************************************
+prix canettes 33cl cannette = 1.50€						OK
+
+Redbull 25cl cannette				=	2€
+
+Limonade Artisanale 42cl			=	2€
+
+Perrier	petite bouteille verre		=	2€
+
+Orangina verre		33cl			=	2€
+
+bouteille Crystalin fraise 50cl		=	2€
+bouteille Crystalin					=	1€
+
+Capri-Sun							=	1€
+
+Sirop								=	2€
+
+PAGO								=	2€
+*********************************************
+
+*********************************************
+Plat semaine	***En barquette***
+
+Coucous "selon humeur"				=	10€
+
+Paella"selon humeur"				=	10€
+
+Daube "selon Humeur"				=	10€				OK
+
+*********************************************
+s

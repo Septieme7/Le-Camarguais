@@ -15,35 +15,30 @@
 </head>
 <body class="min-h-screen flex flex-col" data-theme="light">
     <header class="header-bg text-white text-center py-6 px-4">
-        <div class="flex items-center justify-center gap-2 flex-col sm:flex-row">
+        <div class="header-overlay"></div>
+        <div class="flex items-center justify-center gap-2 flex-col sm:flex-row relative z-10">
             <img src="../images/logo.png" alt="Logo du Restaurant" class="header-logo">
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4 animate-pulse-text">Le Camarguais</h1>
         </div>
-        <div class="flex flex-wrap justify-center gap-2">
-            <button id="themeToggleBtn" class="btn bg text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium"><span class="icon-theme"></span></button>
-            <button id="fullscreenBtn" class="btn bg text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium"><span class="icon-fullscreen"></span></button>
-            <button id="muteBtn" class="btn bg text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium"><span class="icon-sound"></span></button>
-            <a href="tel:+33123456789" class="btn btn-phone bg text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Appeler le restaurant"><i class="fas fa-phone"></i></a>
-            <a href="https://wa.me/33123456789" class="btn btn-whatsapp bg-whatsapp-green text-white w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Contacter via WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.snapchat.com/add/restosnap" class="btn btn-snapchat bg-snapchat-yellow text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Suivre sur Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
-            <a href="../../index.html" class="btn bg text-dark-gold w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg font-medium" aria-label="Retour au menu"><i class="fas fa-home"></i></a>
+        <div class="flex flex-wrap justify-center gap-2 relative z-10">
+            <button id="themeToggleBtn" class="btn-header" aria-label="Changer le thème"><span class="icon-theme"></span></button>
+            <button id="fullscreenBtn" class="btn-header" aria-label="Mode plein écran"><span class="icon-fullscreen"></span></button>
+            <a href="tel:+33426484756" class="btn-header btn-phone" aria-label="Appeler le restaurant"><i class="fas fa-phone"></i></a>
+            <a href="https://wa.me/33426484756" class="btn-header btn-whatsapp" aria-label="Contacter via WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.snapchat.com/add/camarguais13230" class="btn-header btn-snapchat" aria-label="Suivre sur Snapchat"><i class="fab fa-snapchat-ghost"></i></a>
+            <a href="../../index.html" class="btn-header" aria-label="Retour à l'accueil"><i class="fas fa-home"></i></a>
         </div>
     </header>
 
-    <audio id="bgAudio" autoplay loop>
-        <source src="../audio/background.mp3" type="audio/mpeg">
-        Votre navigateur ne supporte pas l'audio.
-    </audio>
-
     <main class="flex-grow container mx-auto px-4 py-6">
         <section class="section-card p-4 sm:p-6 mb-8 text-center">
-            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 mb-4">Aucune Promotion en Cours</h2>
-            <p id="promoDate" class="text-base sm:text-lg font-medium text-gray-600 mb-4">Vérifié le 12/10/2025</p>
-            <p class="text-sm sm:text-base">Revenez bientôt pour découvrir nos prochaines offres !</p>
+            <h2 class="section-title">Aucune Promotion en Cours</h2>
+            <p id="promoDate" class="promo-date">Vérifié le 12/10/2025</p>
+            <p class="promo-text">Revenez bientôt pour découvrir nos prochaines offres !</p>
         </section>
     </main>
 
-    <footer class="bg-gray-200 text-center py-4 text-sm text-black">
+    <footer class="footer">
         <p>© 2025 Le Camarguais - Images/Photos non contractuelles - Tous droits réservés</p>
     </footer>
 
