@@ -62,11 +62,54 @@ body {
     z-index: 1;
 }
 
+/* ===== Logo avec filtre dégradé doré ===== */
 .header-logo {
-    height: 5rem;
+    height: 6rem;
     width: auto;
-    border-radius: 0.5rem;
+    border-radius: 0;
     object-fit: contain;
+    background: transparent;
+    animation: logoAnimation 3s ease-in-out infinite;
+    transform-origin: center;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    transition: var(--transition);
+}
+
+.header-logo:hover {
+    animation: logoHover 0.5s ease-in-out;
+    transform: scale(1.1);
+    filter: drop-shadow(0 8px 20px rgba(212, 160, 23, 0.4));
+}
+
+@keyframes logoAnimation {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    }
+    25% {
+        transform: scale(1.05) rotate(1deg);
+        filter: drop-shadow(0 6px 12px rgba(212, 160, 23, 0.3));
+    }
+    50% {
+        transform: scale(1.03) rotate(-1deg);
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    }
+    75% {
+        transform: scale(1.05) rotate(1deg);
+        filter: drop-shadow(0 6px 12px rgba(212, 160, 23, 0.3));
+    }
+}
+
+@keyframes logoHover {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1.1);
+    }
 }
 
 /* ===== Typographie ===== */
